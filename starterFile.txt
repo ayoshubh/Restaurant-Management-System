@@ -1,0 +1,7 @@
+s01-Paneer Pakoda-100
+s02-Cheeseballs-50
+s03-Aloo Pakoda-30
+s04-Bhajiya-40
+s05-Vada pav-20
+s06-Dahi vada-30
+s07-Idli-35
