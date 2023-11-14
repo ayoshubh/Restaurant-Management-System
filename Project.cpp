@@ -6,6 +6,8 @@
 #include <utility>
 #include <ctime>
 #include <iomanip>
+#include <unistd.h>
+
 using namespace std;
 
 class Restaurant
@@ -20,17 +22,65 @@ public:
     Restaurant()
     {
         openTime = 10;
-        closeTime = 22;
+        closeTime = 12;
         restaurantName = "Food Villa";
         location = "Vadodara, Gujarat";
     }
 
     void showDetails()
     {
-        cout << "Welcome to our Restaurant " << restaurantName << endl;
+        cout << " \n**********  Welcome to our Restaurant " << restaurantName << "  ********** "<<endl;
         cout << "We are located in " << location << endl;
-        cout << "We are open all the 7 days of the week from " << openTime << " am to " << closeTime << " pm" << endl;
-        cout << "Have a nice day :)" << endl;
+        cout << "We are open all the 7 days of the week from " << openTime << "am to " << closeTime << "pm" << endl;
+        cout << "Have a nice day :) \n" << endl;
+    }
+};
+
+class User : protected Restaurant
+{
+protected:
+    int visitTime;
+    string name;
+
+public:
+    bool validateName(string str)
+    {
+        for (char ch : str)
+        {
+            if (ch == ' ')
+            {
+                continue;
+            }
+            if (!isalpha(ch))
+            {
+                cout << "You cannot enter numbers or special characters in your name " << endl;
+                return false;
+            }
+        }
+        return true;
+    }
+    static bool validateEntry()
+    {
+        // Get the current time
+        auto now = std::chrono::system_clock::now();
+        std::time_t current_time = std::chrono::system_clock::to_time_t(now);
+
+        // Convert the current time to a tm struct for local time
+        std::tm local_time = *std::localtime(&current_time);
+
+        // Extract the current hour from the tm struct
+        int current_hour = local_time.tm_hour;
+
+        if (10 <= current_hour && 22 > current_hour)
+        {
+            cout << "Welcome to Food Villa \n";
+            return true;
+        }
+        else
+        {
+            cout << "Sorry we are not open right now \n";
+            return false;
+        }
     }
 };
 
@@ -91,18 +141,17 @@ public:
     void display()
     {
         vector<vector<string>> menuList = getMenu();
-        cout << "DISPLAYING MENU" << endl;
+        cout << " _____Starters Menu_____ \n\n";
 
         for (int i = 0; i < menuList.size(); i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                cout << menuList[i][j] << " ";
+                cout << menuList[i][j] << "  ";
             }
-            cout << endl;
+            cout <<"\n\n";
         }
 
-        cout << endl;
     }
 };
 
@@ -150,18 +199,16 @@ public:
     void display()
     {
         vector<vector<string>> menuList = getMenu();
-        cout << "DISPLAYING MENU" << endl;
+        cout << " _____Main Course Menu_____ \n\n";
 
         for (int i = 0; i < menuList.size(); i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                cout << menuList[i][j] << " ";
+                cout << menuList[i][j] << "  ";
             }
-            cout << endl;
+            cout << "\n\n";
         }
-
-        cout << endl;
     }
 };
 
@@ -209,18 +256,17 @@ public:
     void display()
     {
         vector<vector<string>> menuList = getMenu();
-        cout << "DISPLAYING MENU" << endl;
+        cout << " _____Dessert Menu_____\n\n ";
 
         for (int i = 0; i < menuList.size(); i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                cout << menuList[i][j] << " ";
+                cout << menuList[i][j] << "  ";
             }
-            cout << endl;
+            cout <<"\n\n";
         }
 
-        cout << endl;
     }
 };
 
@@ -237,8 +283,8 @@ public:
         bool flag = false;
         // while (!flag)
         // {
-        cout << "Enter the item Id of items you wish to order: ";
-        getline(cin, orderInput);
+        cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+        cin.ignore();
         getline(cin, orderInput);
 
         for (int i = 0; i < orderInput.size(); i++)
@@ -251,9 +297,8 @@ public:
             }
         }
 
-        // if(flag) continue;
-
         string singleId;
+        
         for (int i = 0; i < orderInput.size(); i++)
         {
             if (orderInput[i] == ',')
@@ -291,9 +336,10 @@ public:
                     break;
                 }
             }
-            if (!flag)
-                cout << "Item id " << orderL[i] << " does not exist and hence won't be included in the order" << endl;
-        }
+            if (!flag){
+                cout << "\nItem id " << orderL[i] << " does not exist and hence won't be included in the order." << endl;
+                usleep(3000000);
+            }
 
         // cout << "Cost of starters is : " << starterPrice << endl;
         return starterPrice;
@@ -317,8 +363,10 @@ public:
                     break;
                 }
             }
-            if (!flag)
-                cout << "Item id " << orderL[i] << " does not exist and hence won't be included in the order" << endl;
+            if (!flag){
+                cout << "\nItem id " << orderL[i] << " does not exist and hence won't be included in the order." << endl;
+                usleep(3000000);
+            }
         }
 
         // cout << "Cost of main course is : " << mainCoursePrice << endl;
@@ -342,8 +390,10 @@ public:
                     break;
                 }
             }
-            if (!flag)
-                cout << "Item id " << orderL[i] << " does not exist and hence won't be included in the order" << endl;
+            if (!flag){
+                cout << "\nItem id " << orderL[i] << " does not exist and hence won't be included in the order." << endl;
+                usleep(3000000);
+            }
         }
 
         // cout << "Cost of Dessert is : " << dessertPrice << endl;
@@ -362,10 +412,12 @@ public:
     }
 };
 
-class Receipt : public Order
+class Receipt : public Order, public User
 {
 public:
     string itemName;
+    string receipt = "";
+
     void displayItem(vector<string> starterStr, vector<string> mainStr, vector<string> dessertStr)
     {
 
@@ -376,9 +428,13 @@ public:
             {
                 if (start[j][0] == starterStr[i])
                 {
-                    cout << start[j][1] << endl;
+                    // cout << start[j][1] << endl;
                     itemName += start[j][1];
-                    itemName += "\t";
+                    for (int i = start[j][1].size(); i < 20; i++)
+                    {
+                        itemName += "-";
+                    }
+                    // itemName += "Rs.";
                     itemName += start[j][2];
                     itemName += "\n";
                     break;
@@ -393,9 +449,13 @@ public:
             {
                 if (start[j][0] == mainStr[i])
                 {
-                    cout << start[j][1] << endl;
+                    // cout << start[j][1] << endl;
                     itemName += start[j][1];
-                    itemName += "\t";
+                    for (int i = start[j][1].size(); i < 20; i++)
+                    {
+                        itemName += "-";
+                    }
+                    // itemName += "Rs.";
                     itemName += start[j][2];
                     itemName += "\n";
                     break;
@@ -410,9 +470,13 @@ public:
             {
                 if (start[j][0] == dessertStr[i])
                 {
-                    cout << start[j][1] << endl;
+                    // cout << start[j][1] << endl;
                     itemName += start[j][1];
-                    itemName += "\t";
+                    for (int i = start[j][1].size(); i < 20; i++)
+                    {
+                        itemName += "-";
+                    }
+                    // itemName += "Rs.";
                     itemName += start[j][2];
                     itemName += "\n";
                     break;
@@ -420,16 +484,36 @@ public:
             }
         }
     }
-    void showReceipt(int starterPrice = 0, int mainCoursePrice = 0, int dessertPrice = 0)
+    string getReceipt(string name, int starterPrice = 0, int mainCoursePrice = 0, int dessertPrice = 0)
     {
+        // ofstream file("TotalReceiptFile.txt",ios::app);
+        time_t t = time(nullptr);
+        tm *now = localtime(&t);
+        // Format the current time as a string
+        char buffer[20];
+        strftime(buffer, sizeof(buffer), "%d/%m/%Y %H:%M:%S", now);
+        string formattedDateTime(buffer);
         int totalCost = starterPrice + mainCoursePrice + dessertPrice;
-        cout << "Total price of your food is : " << totalCost << endl;
+        receipt += "\n*Customer Name : ";
+        receipt += name;
+        receipt += "\n";
+        receipt += "Time: ";
+        receipt += formattedDateTime;
+        receipt += "\nOrdered Items:\n";
+        receipt += itemName;
+        receipt += "--------------------------\n";
+        receipt += " Total Bill :      Rs.";
+        receipt += to_string(totalCost);
+        receipt += "\n--------------------------\n";
+
+        cout << receipt;
+        return receipt;
     }
 
-    void addReceiptToFile()
+    void addReceiptToFile(string receipt)
     {
-        ofstream file("TotalReceiptFile.txt");
-        file << itemName;
+        ofstream file("TotalReceiptFile.txt", ios::app);
+        file << receipt;
         file.close();
     }
 };
@@ -480,255 +564,300 @@ public:
         }
     }
 };
-
-class User : protected Restaurant
+class Administrator
 {
-protected:
-    int visitTime;
-    string name;
+private:
+    string username = "ad12";
+    string password = "pwd12";
+    string customerDetail;
 
 public:
-    bool validateName(string str)
+    Administrator()
     {
-        for (char ch : str)
-        {
-            if(ch==' '){
-                continue;
-            }
-            if (!isalpha(ch))
-            {
-                cout << "You cannot enter numbers or special characters in your name " << endl;
-                return false;
-            }
-        }
-        return true;
     }
-        static bool validateEntry()
-        {
-            // Get the current time
-            auto now = std::chrono::system_clock::now();
-            std::time_t current_time = std::chrono::system_clock::to_time_t(now);
 
-            // Convert the current time to a tm struct for local time
-            std::tm local_time = *std::localtime(&current_time);
-
-            // Extract the current hour from the tm struct
-            int current_hour = local_time.tm_hour;
-
-            if (10 <= current_hour && 22 > current_hour)
-            {
-                cout << "Welcome to Food Villa" << endl;
-                return true;
-            }
-            else
-            {
-                cout << "Sorry we are not open right now" << endl;
-                return true;
-            }
-        }
-    };
-
-    class Administrator
+    string getUsername()
     {
-    private:
-        string username = "ad12";
-        string password = "pwd12";
+        return username;
+    }
 
-    public:
-        Administrator()
-        {
-        }
-
-        string getUsername()
-        {
-            return username;
-        }
-
-        string getPassword()
-        {
-            return password;
-        }
-
-        // static authentication(){
-        //     string sysUname, sysPwd;
-        //     sysUname = getUsername();
-        //     sysPwd = getPassword();
-        // }
-
-        void totalRevenue()
-        {
-            cout << "The total Revenue Generated is :" << endl;
-        }
-    };
-
-    int main()
+    string getPassword()
     {
-        // Restaurant r;
-        string reply;
-        cout << "Are you a customer? (y/n)" << endl;
-        cin >> reply;
-        if (reply == "y" || reply == "Y")
+        return password;
+    }
+
+    string getLogbook()
+    {
+        ifstream file("TotalReceiptFile.txt");
+
+        string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>())); // Read the entire file
+
+        file.close(); // Close the file
+
+        return content;
+    }
+
+    int findSubstringIndex(const std::string &largerString, const std::string &smallerString)
+    {
+        size_t found = largerString.find(smallerString);
+        if (found != std::string::npos)
         {
-            if (User::validateEntry())
-            {
-                string customerName;
-                bool flag=true;
-                User u;
-                cout<<"Please Enter your Name : ";
-                getline(cin,customerName);
-                getline(cin,customerName);
-                while(flag){
-                    if(u.validateName(customerName)){
-                        flag=false;
-                    }
-                }
-                int starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
-                vector<string> starterOrderList = {}, mainOrderList = {}, dessertOrderList = {};
-                Order mainCourseOrderObj, starterOrderObj, dessertOrderObj;
-                while (true)
-                {
-
-                    cout << "Press A to see Restaurant Details" << endl;
-                    cout << "Press B to see Menu" << endl;
-                    cout << "Press C to get food receipt" << endl;
-                    cout << "Press D to rate your experience" << endl;
-                    cout << "Press X to exit" << endl;
-                    char choice;
-                    cin >> choice;
-
-                    if (choice == 'A')
-                    {
-                        Restaurant r;
-                        r.showDetails();
-                    }
-                    else if (choice == 'B')
-                    {
-                        // Menu m;
-                        while (true)
-                        {
-
-                            cout << "Press S to see Starters Menu." << endl;
-                            cout << "Press M to see Main Course Menu." << endl;
-                            cout << "Press D to see Dessert Menu." << endl;
-                            cout << " Press X to return to previous Menu." << endl;
-
-                            cin >> choice;
-
-                            if (choice == 'S')
-                            {
-                                Starters st;
-                                st.display();
-                                cout << endl;
-                                string ch;
-                                cout << "Do you wish to order something from starters? (y/n) : ";
-                                cin >> ch;
-                                if (ch == "y" || ch == "Y")
-                                {
-                                    starterOrderList = starterOrderObj.orderItem();
-                                    starterPrice = starterOrderObj.getStarterOrderCost(starterOrderList);
-                                }
-                            }
-                            else if (choice == 'M')
-                            {
-                                MainCourse main;
-                                main.display();
-                                cout << endl;
-                                string ch;
-                                cout << "Do you wish to order something from Main course? (y/n) : ";
-                                cin >> ch;
-                                if (ch == "y" || ch == "Y")
-                                {
-                                    mainOrderList = mainCourseOrderObj.orderItem();
-                                    mainCoursePrice = mainCourseOrderObj.getMainCourseOrderCost(mainOrderList);
-                                }
-                            }
-                            else if (choice == 'D')
-                            {
-                                Dessert sweet;
-                                sweet.display();
-                                cout << endl;
-                                string ch;
-                                cout << "Do you wish to order something from Dessert? (y/n) : ";
-                                cin >> ch;
-                                if (ch == "y" || ch == "Y")
-                                {
-                                    dessertOrderList = dessertOrderObj.orderItem();
-                                    dessertPrice = dessertOrderObj.getDessertOrderCost(dessertOrderList);
-                                }
-                            }
-                            else if (choice == 'X')
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                cout << " Invalid Response " << endl;
-                            }
-                        }
-                    }
-                    else if (choice == 'C')
-                    {
-                        if (!starterPrice && !mainCoursePrice && !dessertPrice)
-                        {
-                            cout << "You have to order atleast one food item to generate a receipt" << endl;
-                        }
-                        else
-                        {
-                            Receipt bill;
-                            bill.displayItem(starterOrderList, mainOrderList, dessertOrderList);
-                            cout << endl;
-                            bill.showReceipt(starterPrice, mainCoursePrice, dessertPrice);
-                            bill.addReceiptToFile();
-                            starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
-                            starterOrderList = {}, mainOrderList = {}, dessertOrderList = {};
-                        }
-                    }
-                    else if (choice == 'D')
-                    {
-                        Rating r;
-                        r.takeRating();
-                    }
-                    else if (choice == 'X')
-                    {
-                        if (!starterPrice && !mainCoursePrice && !dessertPrice)
-                        {
-                            return 0;
-                        }
-                        else
-                        {
-                            cout << "You cannot exit without generating the food receipt" << endl;
-                        }
-                    }
-                    else
-                    {
-                        cout << " Invalid Response" << endl;
-                    }
-                }
-            }
+            return static_cast<int>(found);
         }
         else
         {
-            string uname, pwd;
-            string sysUname, sysPwd;
-            cout << "Welcome to Administrator Login portal" << endl;
-            cout << "Username : ";
-            cin >> uname;
-            cout << "Password : ";
-            cin >> pwd;
-            Administrator admin;
-            sysUname = admin.getUsername();
-            sysPwd = admin.getPassword();
-            int tries = 1;
+            return -1; // Return -1 if the substring is not found
+        }
+    }
 
-            if (sysUname != uname || sysPwd != pwd)
+    string searchCustomer(string name)
+    {
+        string tempContent = getLogbook();
+        // std::string largerString = "This is a larger string.";
+        // std::string smallerString = "larger";
+
+        int index = findSubstringIndex(tempContent, name);
+        for (int i = index; i < tempContent.size(); i++)
+        {
+            if (tempContent[i] == '*')
             {
-                cout << "You have entered the wrong credentials" << endl;
+                break;
             }
-            else
+            customerDetail.push_back(tempContent[i]);
+        }
+        return customerDetail;
+    }
+
+    void totalRevenue()
+    {
+        cout << "The total Revenue Generated is :" << endl;
+    }
+};
+
+int main()
+{
+    // Restaurant r;
+    system("clear");
+    string reply;
+    cout << "Are you a customer? \n(press Y for Yes or any other key to login as Administrator): ";
+    cin >> reply;
+    if (reply == "y" || reply == "Y")
+    {
+        system("clear");
+        if (User::validateEntry())
+        {
+            string customerName;
+            bool flag = true;
+            User u;
+            cout << "Please Enter your Name : ";
+            cin.ignore();
+            getline(cin,customerName);
+            // getline(cin, customerName);
+            while (flag)
             {
-                cout << "You are inside the admin portal" << endl;
+                if (u.validateName(customerName))
+                {
+                    flag = false;
+                }
+            }
+            bool ratingFlag = false;
+            int starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
+            vector<string> starterOrderList = {}, mainOrderList = {}, dessertOrderList = {};
+            Order mainCourseOrderObj, starterOrderObj, dessertOrderObj;
+            while (true)
+            {
+
+                cout << "\nPress A to see Restaurant Details" << endl;
+                cout << "Press B to see Menu" << endl;
+                cout << "Press C to get food receipt" << endl;
+                cout << "Press D to rate your experience" << endl;
+                cout << "Press X to exit\n" << endl;
+                char choice;
+                cout<<"Enter your choice here : ";
+                cin >> choice;
+
+                if (choice == 'A')
+                {
+                    system("clear"); 
+                    Restaurant r;
+                    r.showDetails();
+                }
+                else if (choice == 'B')
+                {
+                    // Menu m;
+                    while (true)
+                    {
+                        system("clear"); 
+                        cout << "\nPress S to see Starters Menu." << endl;
+                        cout << "Press M to see Main Course Menu." << endl;
+                        cout << "Press D to see Dessert Menu." << endl;
+                        cout << "Press X to return to previous Menu." << endl;
+                        cout<<"\nEnter your choice here : ";
+                        cin >> choice;
+                        if (choice == 'S')
+                        {
+                            system("clear"); 
+                            Starters st;
+                            st.display();
+                            string ch;
+                            cout << "Do you wish to order something from Starters? \n(press Y for Yes or any other key for No) : ";
+                            cin >> ch;
+                            if (ch == "y" || ch == "Y")
+                            {
+                                starterOrderList = starterOrderObj.orderItem();
+                                starterPrice = starterOrderObj.getStarterOrderCost(starterOrderList);
+
+                            }
+                        }
+                        else if (choice == 'M')
+                        {
+                            system("clear"); 
+                            MainCourse main;
+                            main.display();
+                            cout << endl;
+                            string ch;
+                            cout << "Do you wish to order something from Main course? \n(press Y for Yes or any other key for No) : ";
+                            cin >> ch;
+                            if (ch == "y" || ch == "Y")
+                            {
+                                mainOrderList = mainCourseOrderObj.orderItem();
+                                mainCoursePrice = mainCourseOrderObj.getMainCourseOrderCost(mainOrderList);
+                            }
+                        }
+                        else if (choice == 'D')
+                        {
+                            system("clear"); 
+                            Dessert sweet;
+                            sweet.display();
+                            cout << endl;
+                            string ch;
+                            cout << "Do you wish to order something from Main course? \n(press Y for Yes or any other key for No) : ";
+                            cin >> ch;
+                            if (ch == "y" || ch == "Y")
+                            {
+                                dessertOrderList = dessertOrderObj.orderItem();
+                                dessertPrice = dessertOrderObj.getDessertOrderCost(dessertOrderList);
+                            }
+                        }
+                        else if (choice == 'X')
+                        {
+                            system("clear");
+                            break;
+                        }
+                        else
+                        {
+                            system("clear");
+                            cout << " Invalid Response " << endl;
+                        }
+                    }
+                }
+                else if (choice == 'C')
+                {
+                    if (!starterPrice && !mainCoursePrice && !dessertPrice)
+                    {
+                        system("clear");
+                        cout << "\nYou have to order atleast one food item to generate a receipt.\n";
+                    }
+                    else
+                    {
+                        system("clear");
+                        Receipt bill;
+                        bill.displayItem(starterOrderList, mainOrderList, dessertOrderList);
+                        cout << endl;
+                        string singleReceipt = bill.getReceipt(customerName, starterPrice, mainCoursePrice, dessertPrice);
+                        int totalCost = starterPrice + mainCoursePrice + dessertPrice;
+                        bill.addReceiptToFile(singleReceipt);
+                        starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
+                        starterOrderList = {}, mainOrderList = {}, dessertOrderList = {};
+                        ratingFlag = true;
+                    }
+                }
+                else if (choice == 'D')
+                {
+                    if (ratingFlag)
+                    {
+                        system("clear");
+                        Rating r;
+                        r.takeRating();
+                        ratingFlag = false;
+                    }
+                    else
+                    {
+                        system("clear");
+                        cout << "\nPlease order food before rating your experience. \n";
+                    }
+                }
+                else if (choice == 'X')
+                {
+                    if (!starterPrice && !mainCoursePrice && !dessertPrice)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        system("clear");
+                        cout << "\nYou cannot exit without generating the food receipt.\n";
+                    }
+                }
+                else
+                {
+                    system("clear");
+                    cout << " Invalid Response" << endl;
+                }
             }
         }
-
-        return 0;
     }
+    else
+    {
+        string uname, pwd;
+        string sysUname, sysPwd;
+        cout << "Welcome to Administrator Login portal" << endl;
+        cout << "Username : ";
+        cin >> uname;
+        cout << "Password : ";
+        cin >> pwd;
+        Administrator admin;
+        sysUname = admin.getUsername();
+        sysPwd = admin.getPassword();
+        int tries = 1;
+
+        if (sysUname != uname || sysPwd != pwd)
+        {
+            cout << "You have entered the wrong credentials" << endl;
+        }
+        else
+        {
+            cout << "You are inside the admin portal" << endl;
+            while (true)
+            {
+                cout << "Press A to access Transaction logbook." << endl;
+                cout << "Press B to access Customer details" << endl;
+                cout << "Press C to access Total revenue of the restaurant"<<endl;
+                cout << "Press X to Exit" << endl;
+                char ch;
+                cin >> ch;
+                if (ch == 'A')
+                {
+                    string log = admin.getLogbook();
+                    cout << log << endl;
+                }
+                else if (ch == 'B')
+                {
+                    string cname;
+                    cin>>cname;
+                    string details=admin.searchCustomer(cname);
+                    cout<<details;
+                }
+                else if (ch == 'X')
+                {
+                    return 0;
+                }
+                else
+                {
+                    cout << "Invalid response" << endl;
+                }
+            }
+        }
+    }
+    return 0;
+}

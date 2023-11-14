@@ -149,17 +149,16 @@
 #include <ctime>
 
 int main() {
-    // Get the current time
-    std::time_t t = std::time(nullptr);
-    std::tm* now = std::localtime(&t);
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
 
-    // Display the current time in the specified format
-    std::cout << std::setfill('0') << std::setw(2) << now->tm_mday << '/'
-              << std::setfill('0') << std::setw(2) << now->tm_mon + 1 << '/'
-              << now->tm_year + 1900 << ' '
-              << std::setfill('0') << std::setw(2) << now->tm_hour << ':'
-              << std::setfill('0') << std::setw(2) << now->tm_min << ':'
-              << std::setfill('0') << std::setw(2) << now->tm_sec << std::endl;
+    // Format the current time as a string
+    char buffer[20];
+    strftime(buffer, sizeof(buffer), "%d/%m/%Y %H:%M:%S", now);
+    string formattedDateTime(buffer);
+
+    // Output the formatted date and time string
+    cout << "Current Date and Time: " << formattedDateTime << endl;
 
     return 0;
 }

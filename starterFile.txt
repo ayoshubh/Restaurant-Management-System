@@ -5,3 +5,7 @@ s04-Bhajiya-40
 s05-Vada pav-20
 s06-Dahi vada-30
 s07-Idli-35
+s08-Tomato Soup-50
+s09-Noodles-60
+s10-Papdi chaat-45
+s11-Dabeli-25

@@ -1,7 +1,11 @@
-d01-Vanilla Ice Cream-30
-d02-Chocolate Ice Cream-25
-d03-Strawberry Ice Cream-35
-d04-Blackforest Pastry-50
+d01-Ice Cream-30
+d02-Cheesecake-25
+d03-Apple pie-35
+d04-Pastry-50
 d05-Ras Malai-35
 d06-Faluda-40
 d07-Kulfi-20
+d08-Gulab Jamun-15
+d09-Rasgulla-15
+d10-Barfi-20
+d11-Plum cobbler-45
