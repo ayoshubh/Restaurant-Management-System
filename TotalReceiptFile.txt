@@ -10,36 +10,6 @@ Aloo Pakoda---------Rs.30
  Total Bill :      Rs.180
 --------------------------
 
-*Customer Name : Shubham Chauhan
-Time: 13/11/2023 22:23:35
-Ordered Items:
-Paneer Pakoda-------Rs.100
-Cheeseballs---------Rs.50
-Aloo Pakoda---------Rs.30
---------------------------
- Total Bill :      Rs.180
---------------------------
-
-*Customer Name : Shubham Chauhan
-Time: 13/11/2023 22:23:35
-Ordered Items:
-Paneer Pakoda-------Rs.100
-Cheeseballs---------Rs.50
-Aloo Pakoda---------Rs.30
---------------------------
- Total Bill :      Rs.180
---------------------------
-
-*Customer Name : Shubham Chauhan
-Time: 13/11/2023 22:23:35
-Ordered Items:
-Paneer Pakoda-------Rs.100
-Cheeseballs---------Rs.50
-Aloo Pakoda---------Rs.30
---------------------------
- Total Bill :      Rs.180
---------------------------
-
 *Customer Name : Yash Chauhan
 Time: 14/11/2023 09:07:33
 Ordered Items:
@@ -62,34 +32,6 @@ Strawberry Ice Cream35
  Total Bill :      Rs.90
 --------------------------
 
-*Customer Name : Abcd efgh
-Time: 14/11/2023 12:34:57
-Ordered Items:
-Paneer Pakoda-------100
-Cheeseballs---------50
---------------------------
- Total Bill :      Rs.150
---------------------------
-
-*Customer Name : dhfj dhfgh
-Time: 14/11/2023 20:56:34
-Ordered Items:
-Paneer Pakoda-------100
-Cheeseballs---------50
---------------------------
- Total Bill :      Rs.150
---------------------------
-
-*Customer Name : shfg shfg
-Time: 14/11/2023 21:10:02
-Ordered Items:
-Paneer Pakoda-------100
-Cheeseballs---------50
-Aloo Pakoda---------30
---------------------------
- Total Bill :      Rs.180
---------------------------
-
 *Customer Name : Atharv Vikhe
 Time: 14/11/2023 21:35:32
 Ordered Items:
@@ -97,4 +39,36 @@ Paneer Pakoda-------100
 Cheeseballs---------50
 --------------------------
  Total Bill :      Rs.150
+--------------------------
+
+*Customer Name : Humba
+Time: 15/11/2023 21:36:22
+Ordered Items:
+Paneer Pakoda-------100
+Cheeseballs---------50
+Paneer Pakoda-------100
+Cheeseballs---------50
+--------------------------
+ Total Bill :      Rs.300
+--------------------------
+
+*Customer Name : Ashes
+Time: 15/11/2023 22:18:40
+Ordered Items:
+Paneer Pakoda-------100
+Cheeseballs---------50
+FriedRice-----------300
+Gujarati Thaali-----150
+--------------------------
+ Total Bill :      Rs.600
+--------------------------
+
+*Customer Name : qwerty
+Time: 16/11/2023 12:33:15
+Ordered Items:
+Tomato Soup---------50
+Chhole Bhature------230
+Paneer Kulcha-------150
+--------------------------
+ Total Bill :      Rs.430
 --------------------------

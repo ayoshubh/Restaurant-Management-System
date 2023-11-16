@@ -15,11 +15,11 @@ protected:
     int itemId;
     string itemName;
     int itemPrice;
-    vector<vector<string>> starterList;
+    vector<vector<string> > starterList;
 
     virtual void display()
     {
-        cout << "Menu";
+        std::cout << "Menu";
     };
 
 public:

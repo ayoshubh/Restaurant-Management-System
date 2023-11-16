@@ -62,11 +62,11 @@ public:
     static bool validateEntry()
     {
         // Get the current time
-        auto now = std::chrono::system_clock::now();
-        std::time_t current_time = std::chrono::system_clock::to_time_t(now);
+        auto now = chrono::system_clock::now();
+        time_t current_time = chrono::system_clock::to_time_t(now);
 
         // Convert the current time to a tm struct for local time
-        std::tm local_time = *std::localtime(&current_time);
+        tm local_time = *localtime(&current_time);
 
         // Extract the current hour from the tm struct
         int current_hour = local_time.tm_hour;
@@ -79,12 +79,12 @@ public:
         else
         {
             cout << "Sorry we are not open right now \n";
-            return false;
+            return true;
         }
     }
 };
 
-struct Menu
+class Menu
 {
 protected:
     int itemId;
@@ -94,15 +94,9 @@ protected:
     vector<string> singleItemList;   // separating itemId, itemName and price from singleItemDetail and storing it in a vector ["itemId", ["itemName"], ["price"]]
     vector<vector<string>> menuList; // nested vector stores the list of menu items [["itemid","itemName","price"],[..],[..]]
 
-    virtual void display() = 0;
-};
-
-class Starters : public Menu
-{
-public:
-    vector<vector<string>> getMenu()
+    vector<vector<string>> getMenu(string filename)
     {
-        ifstream file("starterFile.txt");
+        ifstream file(filename);
 
         string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>())); // Read the entire file
 
@@ -138,9 +132,18 @@ public:
         return menuList;
     }
 
+    virtual void display(){
+        cout<<"Displaying menu \n";
+    }
+};
+
+class Starters : public Menu
+{
+public:
+
     void display()
     {
-        vector<vector<string>> menuList = getMenu();
+        vector<vector<string>> menuList = getMenu("StarterFile.txt");
         cout << " _____Starters Menu_____ \n\n";
 
         for (int i = 0; i < menuList.size(); i++)
@@ -158,47 +161,9 @@ public:
 class MainCourse : public Menu
 {
 public:
-    vector<vector<string>> getMenu()
-    {
-        ifstream file("MainCourseFile.txt");
-
-        string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>())); // Read the entire file
-
-        file.close(); // Close the file
-
-        for (int i = 0; i < content.size(); i++)
-        {
-            if (content[i] == '\n')
-            {
-                singleItemDetail += '-';
-                vector<string> singleItemList;
-                string word;
-
-                for (int i = 0; i < singleItemDetail.size(); i++)
-                {
-                    if (singleItemDetail[i] == '-')
-                    {
-                        singleItemList.push_back(word);
-                        word = "";
-                        continue;
-                    }
-                    word += singleItemDetail[i];
-                }
-                menuList.push_back(singleItemList);
-                // cout<<singleItemDetail<<endl;
-                singleItemDetail = "";
-                // break;
-                continue;
-            }
-            singleItemDetail += content[i];
-        }
-
-        return menuList;
-    }
-
     void display()
     {
-        vector<vector<string>> menuList = getMenu();
+        vector<vector<string>> menuList = getMenu("MainCourseFile.txt");
         cout << " _____Main Course Menu_____ \n\n";
 
         for (int i = 0; i < menuList.size(); i++)
@@ -215,48 +180,10 @@ public:
 class Dessert : public Menu
 {
 public:
-    vector<vector<string>> getMenu()
-    {
-        ifstream file("DessertFile.txt");
-
-        string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>())); // Read the entire file
-
-        file.close(); // Close the file
-
-        for (int i = 0; i < content.size(); i++)
-        {
-            if (content[i] == '\n')
-            {
-                singleItemDetail += '-';
-                vector<string> singleItemList;
-                string word;
-
-                for (int i = 0; i < singleItemDetail.size(); i++)
-                {
-                    if (singleItemDetail[i] == '-')
-                    {
-                        singleItemList.push_back(word);
-                        word = "";
-                        continue;
-                    }
-                    word += singleItemDetail[i];
-                }
-                menuList.push_back(singleItemList);
-                // cout<<singleItemDetail<<endl;
-                singleItemDetail = "";
-                // break;
-                continue;
-            }
-            singleItemDetail += content[i];
-        }
-
-        return menuList;
-    }
-
     void display()
     {
-        vector<vector<string>> menuList = getMenu();
-        cout << " _____Dessert Menu_____\n\n ";
+        vector<vector<string>> menuList = getMenu("DessertFile.txt");
+        cout << " _____Dessert Menu_____ \n\n";
 
         for (int i = 0; i < menuList.size(); i++)
         {
@@ -278,14 +205,13 @@ public:
     vector<string> EmptyOrderList;
     int totalCost;
 
+    Order(string orderInp){
+        this->orderInput=orderInp;
+    }
+    
     vector<string> orderItem()
     {
         bool flag = false;
-        // while (!flag)
-        // {
-        cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
-        cin.ignore();
-        getline(cin, orderInput);
 
         for (int i = 0; i < orderInput.size(); i++)
         {
@@ -315,13 +241,16 @@ public:
                 }
             }
         }
+        // for(auto i: orderList){
+        //     cout<<i<<endl;
+        // }
         return orderList;
     }
 
     int getStarterOrderCost(vector<string> orderL)
     {
 
-        vector<vector<string>> start = Starters::getMenu();
+        vector<vector<string>> start = Starters::getMenu("StarterFile.txt");
         int starterPrice = 0;
         for (int i = 0; i < orderL.size(); i++)
         {
@@ -340,7 +269,7 @@ public:
                 cout << "\nItem id " << orderL[i] << " does not exist and hence won't be included in the order." << endl;
                 usleep(3000000);
             }
-
+        }
         // cout << "Cost of starters is : " << starterPrice << endl;
         return starterPrice;
     }
@@ -348,7 +277,7 @@ public:
     int getMainCourseOrderCost(vector<string> orderL)
     {
 
-        vector<vector<string>> start = MainCourse::getMenu();
+        vector<vector<string>> start = MainCourse::getMenu("MainCourseFile.txt");
         int mainCoursePrice = 0;
         for (int i = 0; i < orderL.size(); i++)
         {
@@ -375,7 +304,7 @@ public:
 
     int getDessertOrderCost(vector<string> orderL)
     {
-        vector<vector<string>> start = Dessert::getMenu();
+        vector<vector<string>> start = Dessert::getMenu("DessertFile.txt");
         int dessertPrice = 0;
         for (int i = 0; i < orderL.size(); i++)
         {
@@ -412,81 +341,102 @@ public:
     }
 };
 
-class Receipt : public Order, public User
+class Receipt :public User,public Starters, public MainCourse,public Dessert
 {
-public:
+private:
     string itemName;
-    string receipt = "";
+    string customerName;
+    string receipt;
+    vector<string> starterStr,mainStr,dessertStr;
+    int starterPrice, mainCoursePrice,dessertPrice;
 
-    void displayItem(vector<string> starterStr, vector<string> mainStr, vector<string> dessertStr)
+    string getOrderedItems()
     {
-
-        vector<vector<string>> start = Starters::getMenu();
+        // string itemNameF, itemNameStr, itemNameMain, itemNameDessert;
+        vector<vector<string>> start = Starters::getMenu("StarterFile.txt");
         for (int i = 0; i < starterStr.size(); i++)
         {
             for (int j = 0; j < start.size(); j++)
             {
-                if (start[j][0] == starterStr[i])
+                if (starterStr[i]==start[j][0])
                 {
                     // cout << start[j][1] << endl;
                     itemName += start[j][1];
-                    for (int i = start[j][1].size(); i < 20; i++)
+                    for (int k = start[j][1].size(); k < 20; k++)
                     {
-                        itemName += "-";
+                        itemName += '-';
                     }
                     // itemName += "Rs.";
                     itemName += start[j][2];
-                    itemName += "\n";
+                    itemName += '\n';
                     break;
                 }
             }
         }
 
-        start = MainCourse::getMenu();
+        start = MainCourse::getMenu("MainCourseFile.txt");
         for (int i = 0; i < mainStr.size(); i++)
         {
             for (int j = 0; j < start.size(); j++)
             {
-                if (start[j][0] == mainStr[i])
+                if (mainStr[i]==start[j][0])
                 {
                     // cout << start[j][1] << endl;
                     itemName += start[j][1];
-                    for (int i = start[j][1].size(); i < 20; i++)
+                    for (int k = start[j][1].size(); k < 20; k++)
                     {
-                        itemName += "-";
+                        itemName += '-';
                     }
                     // itemName += "Rs.";
                     itemName += start[j][2];
-                    itemName += "\n";
+                    itemName += '\n';
                     break;
                 }
             }
         }
 
-        start = Dessert::getMenu();
+        start = Dessert::getMenu("DessertFile.txt");
         for (int i = 0; i < dessertStr.size(); i++)
         {
             for (int j = 0; j < start.size(); j++)
             {
-                if (start[j][0] == dessertStr[i])
+                if (dessertStr[i] == start[j][0])
                 {
                     // cout << start[j][1] << endl;
                     itemName += start[j][1];
-                    for (int i = start[j][1].size(); i < 20; i++)
+                    for (int k = start[j][1].size(); k < 20; k++)
                     {
-                        itemName += "-";
+                        itemName += '-';
                     }
                     // itemName += "Rs.";
                     itemName += start[j][2];
-                    itemName += "\n";
+                    itemName += '\n';
                     break;
                 }
             }
         }
+
+        return itemName;
     }
-    string getReceipt(string name, int starterPrice = 0, int mainCoursePrice = 0, int dessertPrice = 0)
+    
+    public:
+    Receipt(string name, vector<string> starterStr, vector<string> mainStr, vector<string> dessertStr,int starterPrice = 0, int mainCoursePrice = 0, int dessertPrice = 0){
+        this->starterStr=starterStr;
+        this->mainStr=mainStr;
+        this->dessertStr=dessertStr;
+        this->starterPrice = starterPrice;
+        this->mainCoursePrice = mainCoursePrice;
+        this->dessertPrice = dessertPrice;
+        customerName=name;
+        // itemName=getOrderedItems();
+        // receipt=getReceipt();
+
+    }
+
+    string getReceipt()
     {
         // ofstream file("TotalReceiptFile.txt",ios::app);
+        itemName=getOrderedItems();
         time_t t = time(nullptr);
         tm *now = localtime(&t);
         // Format the current time as a string
@@ -495,7 +445,7 @@ public:
         string formattedDateTime(buffer);
         int totalCost = starterPrice + mainCoursePrice + dessertPrice;
         receipt += "\n*Customer Name : ";
-        receipt += name;
+        receipt += customerName;
         receipt += "\n";
         receipt += "Time: ";
         receipt += formattedDateTime;
@@ -505,15 +455,15 @@ public:
         receipt += " Total Bill :      Rs.";
         receipt += to_string(totalCost);
         receipt += "\n--------------------------\n";
-
-        cout << receipt;
+        // cout << receipt;
         return receipt;
     }
 
-    void addReceiptToFile(string receipt)
+    void addReceiptToFile()
     {
+        // this->receipt=getReceipt();
         ofstream file("TotalReceiptFile.txt", ios::app);
-        file << receipt;
+        file << this->receipt;
         file.close();
     }
 };
@@ -637,13 +587,13 @@ public:
 int main()
 {
     // Restaurant r;
-    system("clear");
+    // system("clear");
     string reply;
     cout << "Are you a customer? \n(press Y for Yes or any other key to login as Administrator): ";
     cin >> reply;
     if (reply == "y" || reply == "Y")
     {
-        system("clear");
+        // system("clear");
         if (User::validateEntry())
         {
             string customerName;
@@ -662,8 +612,8 @@ int main()
             }
             bool ratingFlag = false;
             int starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
-            vector<string> starterOrderList = {}, mainOrderList = {}, dessertOrderList = {};
-            Order mainCourseOrderObj, starterOrderObj, dessertOrderObj;
+            vector<string> starterOrderList, mainOrderList, dessertOrderList;
+            // Order mainCourseOrderObj, starterOrderObj, dessertOrderObj;
             while (true)
             {
 
@@ -678,7 +628,7 @@ int main()
 
                 if (choice == 'A')
                 {
-                    system("clear"); 
+                    // system("clear"); 
                     Restaurant r;
                     r.showDetails();
                 }
@@ -687,7 +637,7 @@ int main()
                     // Menu m;
                     while (true)
                     {
-                        system("clear"); 
+                        // system("clear"); 
                         cout << "\nPress S to see Starters Menu." << endl;
                         cout << "Press M to see Main Course Menu." << endl;
                         cout << "Press D to see Dessert Menu." << endl;
@@ -696,7 +646,7 @@ int main()
                         cin >> choice;
                         if (choice == 'S')
                         {
-                            system("clear"); 
+                            // system("clear"); 
                             Starters st;
                             st.display();
                             string ch;
@@ -704,6 +654,11 @@ int main()
                             cin >> ch;
                             if (ch == "y" || ch == "Y")
                             {
+                                cin.ignore();
+                                string orderInput;
+                                cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+                                getline(cin, orderInput);
+                                Order starterOrderObj(orderInput);
                                 starterOrderList = starterOrderObj.orderItem();
                                 starterPrice = starterOrderObj.getStarterOrderCost(starterOrderList);
 
@@ -711,7 +666,7 @@ int main()
                         }
                         else if (choice == 'M')
                         {
-                            system("clear"); 
+                            // system("clear"); 
                             MainCourse main;
                             main.display();
                             cout << endl;
@@ -720,33 +675,43 @@ int main()
                             cin >> ch;
                             if (ch == "y" || ch == "Y")
                             {
+                                cin.ignore();
+                                string orderInput;
+                                cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+                                getline(cin, orderInput);
+                                Order mainCourseOrderObj(orderInput);
                                 mainOrderList = mainCourseOrderObj.orderItem();
                                 mainCoursePrice = mainCourseOrderObj.getMainCourseOrderCost(mainOrderList);
                             }
                         }
                         else if (choice == 'D')
                         {
-                            system("clear"); 
+                            // system("clear"); 
                             Dessert sweet;
                             sweet.display();
                             cout << endl;
                             string ch;
-                            cout << "Do you wish to order something from Main course? \n(press Y for Yes or any other key for No) : ";
+                            cout << "Do you wish to order something from Dessert ? \n(press Y for Yes or any other key for No) : ";
                             cin >> ch;
                             if (ch == "y" || ch == "Y")
                             {
+                                cin.ignore();
+                                string orderInput;
+                                cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+                                getline(cin, orderInput);
+                                Order dessertOrderObj(orderInput);
                                 dessertOrderList = dessertOrderObj.orderItem();
                                 dessertPrice = dessertOrderObj.getDessertOrderCost(dessertOrderList);
                             }
                         }
                         else if (choice == 'X')
                         {
-                            system("clear");
+                            // system("clear");
                             break;
                         }
                         else
                         {
-                            system("clear");
+                            // system("clear");
                             cout << " Invalid Response " << endl;
                         }
                     }
@@ -755,18 +720,17 @@ int main()
                 {
                     if (!starterPrice && !mainCoursePrice && !dessertPrice)
                     {
-                        system("clear");
+                        // system("clear");
                         cout << "\nYou have to order atleast one food item to generate a receipt.\n";
                     }
                     else
                     {
-                        system("clear");
-                        Receipt bill;
-                        bill.displayItem(starterOrderList, mainOrderList, dessertOrderList);
-                        cout << endl;
-                        string singleReceipt = bill.getReceipt(customerName, starterPrice, mainCoursePrice, dessertPrice);
+                        // system("clear");
+                        Receipt bill(customerName,starterOrderList, mainOrderList, dessertOrderList,starterPrice, mainCoursePrice, dessertPrice);
+                        string singleReceipt = bill.getReceipt();
+                        cout<<singleReceipt<<endl;
                         int totalCost = starterPrice + mainCoursePrice + dessertPrice;
-                        bill.addReceiptToFile(singleReceipt);
+                        bill.addReceiptToFile();
                         starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
                         starterOrderList = {}, mainOrderList = {}, dessertOrderList = {};
                         ratingFlag = true;
@@ -776,15 +740,15 @@ int main()
                 {
                     if (ratingFlag)
                     {
-                        system("clear");
+                        // system("clear");
                         Rating r;
                         r.takeRating();
                         ratingFlag = false;
                     }
                     else
                     {
-                        system("clear");
-                        cout << "\nPlease order food before rating your experience. \n";
+                        // system("clear");
+                        cout << "\nPlease order food and generate food receipt before rating your experience. \n";
                     }
                 }
                 else if (choice == 'X')
@@ -795,13 +759,13 @@ int main()
                     }
                     else
                     {
-                        system("clear");
+                        // system("clear");
                         cout << "\nYou cannot exit without generating the food receipt.\n";
                     }
                 }
                 else
                 {
-                    system("clear");
+                    // system("clear");
                     cout << " Invalid Response" << endl;
                 }
             }

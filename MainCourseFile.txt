@@ -1,7 +1,8 @@
-m01-Fried Rice-300
+m01-FriedRice-300
 m02-Gujarati Thaali-150
 m03-Chhole Bhature-230
 m04-Biryani-220
+m05-Mix veg-110
 m06-Shahi Paneer-110
 m07-Palak Paneer-100
 m08-Veg Momos-120
