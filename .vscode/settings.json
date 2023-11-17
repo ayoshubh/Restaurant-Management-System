@@ -1,11 +1,13 @@
 {
   "files.associations": {
+    "*.cpp": "cpp",
     "iostream": "cpp",
     "istream": "cpp",
     "ostream": "cpp",
     "string": "cpp",
     "iosfwd": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "thread": "cpp"
   },
   "C_Cpp.errorSquiggles": "enabled",
   "C_Cpp_Runner.msvcBatchPath": "",

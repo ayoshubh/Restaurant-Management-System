@@ -72,3 +72,106 @@ Paneer Kulcha-------150
 --------------------------
  Total Bill :      Rs.430
 --------------------------
+
+*Customer Name : df
+Time: 17/11/2023 09:25:22
+Ordered Items:
+Plum cobbler--------45
+--------------------------
+ Total Bill :      Rs.45
+--------------------------
+
+*Customer Name : Damn
+Time: 17/11/2023 09:54:06
+Ordered Items:
+Paneer Pakoda-------100
+Gujarati Thaali-----150
+--------------------------
+ Total Bill :      Rs.250
+--------------------------
+
+*Customer Name : Golu
+Time: 17/11/2023 10:10:29
+Ordered Items:
+Paneer Pakoda-------100
+Cheeseballs---------50
+--------------------------
+ Total Bill :      Rs.150
+--------------------------
+
+*Customer Name : MAX
+Time: 17/11/2023 18:27:13
+Ordered Items:
+Dahi vada-----------30
+--------------------------
+ Total Bill :      Rs.30
+--------------------------
+
+*Customer Name : bA
+Time: 17/11/2023 19:27:53
+Ordered Items:
+Paneer Pakoda-------100
+Cheeseballs---------50
+--------------------------
+ Total Bill :      Rs.150
+--------------------------
+
+*Customer Name : ayo
+Time: 17/11/2023 19:54:23
+Ordered Items:
+Paneer Pakoda-------100
+Cheeseballs---------50
+--------------------------
+ Total Bill :      Rs.150
+--------------------------
+
+*Customer Name : ayo
+Time: 17/11/2023 19:54:23
+Ordered Items:
+Paneer Pakoda-------100
+Cheeseballs---------50
+--------------------------
+ Total Bill :      Rs.150
+--------------------------
+
+*Customer Name : async
+Time: 17/11/2023 20:01:23
+Ordered Items:
+Idli----------------35
+--------------------------
+ Total Bill :      Rs.35
+--------------------------
+
+*Customer Name : async
+Time: 17/11/2023 20:01:23
+Ordered Items:
+Idli----------------35
+--------------------------
+ Total Bill :      Rs.35
+--------------------------
+
+*Customer Name : launch async
+Time: 17/11/2023 20:34:33
+Ordered Items:
+Dahi vada-----------30
+Vada pav------------20
+--------------------------
+ Total Bill :      Rs.50
+--------------------------
+
+*Customer Name : Atharv Vikhe
+Time: 17/11/2023 21:17:14
+Ordered Items:
+Gujarati Thaali-----150
+Chhole Bhature------230
+--------------------------
+ Total Bill :      Rs.380
+--------------------------
+
+*Customer Name : Atharv Vikhe
+Time: 17/11/2023 21:18:38
+Ordered Items:
+Bhajiya-------------40
+--------------------------
+ Total Bill :      Rs.40
+--------------------------
