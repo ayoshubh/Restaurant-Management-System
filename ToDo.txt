@@ -3,3 +3,30 @@ Multiple instance of same name user.
 customer name size validation.
 use thread for delay
 provide length validation to customerName string.
+invalid food item id showing multiple times.
+
+// #include <future>
+// #include <iomanip>
+// #include <utility>
+
+
+
+
+        // for (int i = 0; i < orderInput.size(); i++)
+        // {
+        //     if (!(orderInput[i] == ',' || orderInput[i] == 's' || orderInput[i] == 'm' || orderInput[i] == 'd' || (orderInput[i] >= char(48) && orderInput[i] <= char(57))))
+        //     {
+        //         cout << "Invalid Food Order Input" << endl;
+        //         // flag=true;
+        //         return EmptyOrderList;
+        //     }
+        // }
+
+
+
+
+
+
+
+
+  
