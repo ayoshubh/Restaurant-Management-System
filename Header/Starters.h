@@ -3,6 +3,7 @@
 
 #include "Menu.h"
 #include <iostream>
+#include <vector>
 
 class Starters : public Menu {
 private:
@@ -11,6 +12,7 @@ private:
 public:
     Starters();
     void setMenuList();
+    std::vector<std::vector<std::string>> getMenuList();
     void display();
 };
 

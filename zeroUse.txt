@@ -1,0 +1,1219 @@
+
+// class Restaurant
+// {
+// protected:
+//     int openTime;
+//     int closeTime;
+//     string restaurantName;
+//     string phone;
+//     string email;
+//     string location;
+
+// public:
+//     Restaurant()
+//     {
+//         openTime = 10;
+//         closeTime = 12;
+//         restaurantName = "Food Villa";
+//         location = "Vadodara, Gujarat";
+//         phone = "+91 9009009001";
+//         email = "foodvilla@gmail.com";
+//     }
+
+//     void showDetails()
+//     {
+//         cout << " \n**********  Welcome to our Restaurant " << restaurantName << "  ********** " << endl;
+//         cout << "We are located in " << location << endl;
+//         cout << "We are open all the 7 days of the week from " << openTime << "am to " << closeTime << "pm" << endl;
+//         cout << "You can reach us out on " << phone << " by phone or email us at " << email << "\n";
+//         cout << "We have multiple chains across Gujarat.\n";
+//         cout << "Have a nice day :) \n";
+//     }
+// };
+
+// class User : protected Restaurant
+// {
+// protected:
+//     int visitTime;
+//     string firstName, lastName, fullName;
+
+// public:
+//     void setFirstName(string name)
+//     {
+//         if (name.size() < 3 && name.size() > 20)
+//         {
+//             return;
+//         }
+//         for (char ch : name)
+//         {
+//             if (!isalpha(ch))
+//             {
+//                 return;
+//             }
+//         }
+//         for (int i = 0; i < name.size(); i++)
+//         {
+//             name[i] = tolower(name[i]);
+//         }
+//         firstName = name;
+//     }
+
+//     void setLastName(string name)
+//     {
+//         if (name.size() < 3 && name.size() > 30)
+//         {
+//             return;
+//         }
+//         for (char ch : name)
+//         {
+//             if (!isalpha(ch))
+//             {
+//                 return;
+//             }
+//         }
+//         for (int i = 0; i < name.size(); i++)
+//         {
+//             name[i] = tolower(name[i]);
+//         }
+//         lastName = name;
+//         fullName = firstName + " " + lastName;
+//     }
+
+//     string getFullName()
+//     {
+//         return fullName;
+//     }
+
+//     bool validateName()
+//     {
+//         if (!firstName.size() || !lastName.size())
+//         {
+//             return false;
+//         }
+//         return true;
+//     }
+//     static bool validateEntry()
+//     {
+//         // Get the current time
+//         auto now = chrono::system_clock::now();
+//         time_t current_time = chrono::system_clock::to_time_t(now);
+//         // Convert the current time to a tm struct for local time
+//         tm local_time = *localtime(&current_time);
+//         // Extract the current hour from the tm struct
+//         int current_hour = local_time.tm_hour;
+
+//         if (10 <= current_hour && 22 > current_hour)
+//         {
+//             cout << "Welcome to Food Villa \n";
+//             return true;
+//         }
+//         else
+//         {
+//             cout << "Sorry we are not open right now \n";
+//             return true;
+//         }
+//     }
+// };
+
+// class Menu
+// {
+// protected:
+//     int itemId;
+//     string itemName;
+//     int itemPrice;
+//     string singleItemDetail;         // For storing itemId, itemName and price of a single item in a string
+//     vector<string> singleItemList;   // separating itemId, itemName and price from singleItemDetail and storing it in a vector ["itemId", ["itemName"], ["price"]]
+//     vector<vector<string>> menuList; // nested vector stores the list of menu items [["itemid","itemName","price"],[..],[..]]
+
+//     vector<vector<string>> getMenu(string filename)
+//     {
+//         try
+//         {
+//             ifstream file(filename);
+
+//             string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>())); // Read the entire file
+
+//             if (!file.is_open())
+//             {
+//                 throw runtime_error("Failed to open the file\n");
+//             }
+
+//             file.close(); // Close the file
+
+//             for (int i = 0; i < content.size(); i++)
+//             {
+//                 if (content[i] == '\n')
+//                 {
+//                     singleItemDetail += '-';
+//                     vector<string> singleItemList;
+//                     string word;
+
+//                     for (int i = 0; i < singleItemDetail.size(); i++)
+//                     {
+//                         if (singleItemDetail[i] == '-')
+//                         {
+//                             singleItemList.push_back(word);
+//                             word = "";
+//                             continue;
+//                         }
+//                         word += singleItemDetail[i];
+//                     }
+//                     menuList.push_back(singleItemList);
+//                     // cout<<singleItemDetail<<endl;
+//                     singleItemDetail = "";
+//                     // break;
+//                     continue;
+//                 }
+//                 singleItemDetail += content[i];
+//             }
+
+//             return menuList;
+//         }
+//         catch (const std::exception &e)
+//         {
+//             cerr << "Exception: " << e.what() << endl;
+//         }
+//     }
+
+//     virtual void display() = 0;
+// };
+
+// class Starters : public Menu
+// {
+// protected:
+//     string fileName;
+
+// public:
+//     Starters()
+//     {
+//         this->fileName = "TextFiles/StarterFile.txt";
+//     }
+
+//     void setMenuList()
+//     {
+//         this->menuList = getMenu(fileName);
+//     }
+
+//     vector<vector<string>> getMenuList()
+//     {
+//         return this->menuList;
+//     }
+
+//     void display()
+//     {
+//         cout << " _____Starters Menu_____ \n\n";
+
+//         try
+//         {
+//             for (int i = 0; i < menuList.size(); i++)
+//             {
+//                 for (int j = 0; j < 3; j++)
+//                 {
+//                     if (j == 1)
+//                     {
+//                         cout << menuList[i][j];
+//                         for (int j = menuList[i][1].size(); j < 20; j++)
+//                         {
+//                             cout << " ";
+//                         }
+//                         continue;
+//                     }
+
+//                     if (j == 2)
+//                     {
+//                         cout << "Rs." << menuList[i][j];
+//                         continue;
+//                     }
+//                     cout << menuList[i][j] << "\t";
+//                 }
+//                 cout << "\n\n";
+//             }
+//         }
+//         catch (const std::out_of_range &e)
+//         {
+//             std::cerr << "Out of range exception: " << e.what() << std::endl;
+//         }
+//         catch (const std::exception &e)
+//         {
+//             // Handle other exceptions
+//             std::cerr << "Exception: " << e.what() << std::endl;
+//         }
+//     }
+// };
+
+// class MainCourse : public Menu
+// {
+// protected:
+//     string fileName;
+
+// public:
+//     MainCourse()
+//     {
+//         this->fileName = "TextFiles/MainCourseFile.txt";
+//     }
+
+//     void setMenuList()
+//     {
+//         this->menuList = getMenu(fileName);
+//     }
+
+//     vector<vector<string>> getMenuList()
+//     {
+//         return this->menuList;
+//     }
+
+//     void display()
+//     {
+//         cout << " _____Main Course Menu_____ \n\n";
+
+//         try
+//         {
+//             for (int i = 0; i < menuList.size(); i++)
+//             {
+//                 for (int j = 0; j < 3; j++)
+//                 {
+//                     if (j == 1)
+//                     {
+//                         cout << menuList[i][j];
+//                         for (int j = menuList[i][1].size(); j < 20; j++)
+//                         {
+//                             cout << " ";
+//                         }
+//                         continue;
+//                     }
+
+//                     if (j == 2)
+//                     {
+//                         cout << "Rs." << menuList[i][j];
+//                         continue;
+//                     }
+//                     cout << menuList[i][j] << "\t";
+//                 }
+//                 cout << "\n\n";
+//             }
+//         }
+//         catch (const std::out_of_range &e)
+//         {
+//             std::cerr << "Out of range exception: " << e.what() << std::endl;
+//         }
+//         catch (const std::exception &e)
+//         {
+//             // Handle other exceptions
+//             std::cerr << "Exception: " << e.what() << std::endl;
+//         }
+//     }
+// };
+
+// class Dessert : public Menu
+// {
+// protected:
+//     string fileName;
+
+// public:
+//     Dessert()
+//     {
+//         this->fileName = "TextFiles/DessertFile.txt";
+//     }
+
+//     void setMenuList()
+//     {
+//         this->menuList = getMenu(fileName);
+//     }
+
+//     vector<vector<string>> getMenuList()
+//     {
+//         return this->menuList;
+//     }
+
+//     void display()
+//     {
+//         cout << " _____Dessert Menu_____ \n\n";
+
+//         try
+//         {
+//             for (int i = 0; i < menuList.size(); i++)
+//             {
+//                 for (int j = 0; j < 3; j++)
+//                 {
+//                     if (j == 1)
+//                     {
+//                         cout << menuList[i][j];
+//                         for (int j = menuList[i][1].size(); j < 20; j++)
+//                         {
+//                             cout << " ";
+//                         }
+//                         continue;
+//                     }
+
+//                     if (j == 2)
+//                     {
+//                         cout << "Rs." << menuList[i][j];
+//                         continue;
+//                     }
+//                     cout << menuList[i][j] << "\t";
+//                 }
+//                 cout << "\n\n";
+//             }
+//         }
+//         catch (const std::out_of_range &e)
+//         {
+//             std::cerr << "Out of range exception: " << e.what() << std::endl;
+//         }
+//         catch (const std::exception &e)
+//         {
+//             // Handle other exceptions
+//             std::cerr << "Exception: " << e.what() << std::endl;
+//         }
+//     }
+// };
+
+// class Order : public Starters, public MainCourse, public Dessert
+// {
+// protected:
+//     string orderInput;
+//     string fileName;
+//     vector<string> orderList;
+//     vector<string> EmptyOrderList;
+//     int starterPrice, mainCoursePrice, dessertPrice, totalCost;
+
+// public:
+//     Order(vector<vector<string>> sList = {}, vector<vector<string>> mList = {}, vector<vector<string>> dList = {})
+//     {
+//         Starters::menuList = sList;
+//         MainCourse::menuList = mList;
+//         Dessert::menuList = dList;
+//     }
+
+//     void setOrderInput(string orderInp)
+//     {
+//         orderInput = orderInp;
+//     }
+
+//     void setOrderList()
+//     {
+//         this->orderList.clear();
+//     }
+
+//     vector<string> getOrderList()
+//     {
+//         try{
+//             bool flag = false;
+//         orderList.clear();
+//         string singleId;
+//         for (int i = 0; i < orderInput.size(); i++)
+//         {
+//             if (orderInput[i] == ',')
+//             {
+//                 orderList.push_back(singleId);
+//                 singleId = "";
+//             }
+//             else
+//             {
+//                 singleId += orderInput[i];
+//                 if (i == orderInput.size() - 1)
+//                 {
+//                     orderList.push_back(singleId);
+//                 }
+//             }
+//         }
+//         return orderList;
+//         }catch(const std::exception &e){
+//             // Handle other exceptions
+//             std::cerr << "Exception: " << e.what() << std::endl;
+//         }
+
+//     }
+
+//     int getStarterOrderCost()
+//     {
+//         int starterPrice = 0;
+//         int errCount = 0;
+//         for (int i = 0; i < orderList.size(); i++)
+//         {
+//             bool flag = false;
+//             for (int j = 0; j < Starters::menuList.size(); j++)
+//             {
+//                 if (orderList[i] == Starters::menuList[j][0])
+//                 {
+//                     int singleCost = stoi(Starters::menuList[j][2]);
+//                     starterPrice += singleCost;
+//                     flag = true;
+//                     break;
+//                 }
+//             }
+//             if (!flag)
+//             {
+//                 errCount++;
+//                 cout << "\nItem id " << orderList[i] << " does not exist and hence won't be included in the order." << endl;
+//                 usleep(2500000);
+//             }
+//         }
+//         if (orderList.size() != errCount)
+//         {
+//             cout << "Your order has been successfully placed \n";
+//         }
+//         return starterPrice;
+//     }
+
+//     int getMainCourseOrderCost()
+//     {
+//         int mainCoursePrice = 0;
+//         int errCount = 0;
+//         for (int i = 0; i < orderList.size(); i++)
+//         {
+//             bool flag = false;
+//             for (int j = 0; j < MainCourse::menuList.size(); j++)
+//             {
+//                 if (orderList[i] == MainCourse::menuList[j][0])
+//                 {
+//                     int singleCost = stoi(MainCourse::menuList[j][2]);
+//                     mainCoursePrice += singleCost;
+//                     flag = true;
+//                     break;
+//                 }
+//             }
+//             if (!flag)
+//             {
+//                 cout << "\nItem id " << orderList[i] << " does not exist and hence won't be included in the order." << endl;
+//                 usleep(2500000);
+//             }
+//         }
+//         if (orderList.size() != errCount)
+//         {
+//             cout << "Your order has been successfully placed \n";
+//         }
+//         return mainCoursePrice;
+//     }
+
+//     int getDessertOrderCost()
+//     {
+//         int dessertPrice = 0;
+//         int errCount = 0;
+//         for (int i = 0; i < orderList.size(); i++)
+//         {
+//             bool flag = false;
+//             for (int j = 0; j < Dessert::menuList.size(); j++)
+//             {
+//                 if (orderList[i] == Dessert::menuList[j][0])
+//                 {
+//                     int singleCost = stoi(Dessert::menuList[j][2]);
+//                     dessertPrice += singleCost;
+//                     flag = true;
+//                     break;
+//                 }
+//             }
+//             if (!flag)
+//             {
+//                 cout << "\nItem id " << orderList[i] << " does not exist and hence won't be included in the order." << endl;
+//                 usleep(2500000);
+//             }
+//         }
+//         if (orderList.size() != errCount)
+//         {
+//             cout << "Your order has been successfully placed \n";
+//         }
+//         return dessertPrice;
+//     }
+// };
+
+// class Receipt : public User, public Order
+// {
+// private:
+//     string itemName, itemName2, customerName, receipt, str;
+//     vector<string> starterStr, mainStr, dessertStr;
+//     int starterPrice, mainCoursePrice, dessertPrice, totalCost;
+
+//     string getOrderedItems()
+//     {
+//         vector<vector<string>> start = Starters::getMenu("TextFiles/StarterFile.txt");
+//         for (int i = 0; i < starterStr.size(); i++)
+//         {
+//             for (int j = 0; j < start.size(); j++)
+//             {
+//                 if (starterStr[i] == start[j][0])
+//                 {
+//                     itemName += start[j][1];
+//                     for (int k = start[j][1].size(); k < 20; k++)
+//                     {
+//                         itemName += '-';
+//                     }
+//                     itemName += "Rs.";
+//                     itemName += start[j][2];
+//                     itemName += '\n';
+//                     break;
+//                 }
+//             }
+//         }
+
+//         start = MainCourse::getMenu("TextFiles/MainCourseFile.txt");
+//         for (int i = 0; i < mainStr.size(); i++)
+//         {
+//             for (int j = 0; j < start.size(); j++)
+//             {
+//                 if (mainStr[i] == start[j][0])
+//                 {
+//                     itemName += start[j][1];
+//                     for (int k = start[j][1].size(); k < 20; k++)
+//                     {
+//                         itemName += '-';
+//                     }
+//                     itemName += "Rs.";
+//                     itemName += start[j][2];
+//                     itemName += '\n';
+//                     break;
+//                 }
+//             }
+//         }
+
+//         start = Dessert::getMenu("TextFiles/DessertFile.txt");
+//         for (int i = 0; i < dessertStr.size(); i++)
+//         {
+//             for (int j = 0; j < start.size(); j++)
+//             {
+//                 if (dessertStr[i] == start[j][0])
+//                 {
+//                     itemName += start[j][1];
+//                     for (int k = start[j][1].size(); k < 20; k++)
+//                     {
+//                         itemName += '-';
+//                     }
+//                     itemName += "Rs.";
+//                     itemName += start[j][2];
+//                     itemName += '\n';
+//                     break;
+//                 }
+//             }
+//         }
+
+//         return itemName;
+//     }
+
+// public:
+//     Receipt(string cname, vector<string> starterStr, vector<string> mainStr, vector<string> dessertStr, int starterPrice = 0, int mainCoursePrice = 0, int dessertPrice = 0)
+//     {
+//         this->starterStr = starterStr;
+//         this->mainStr = mainStr;
+//         this->dessertStr = dessertStr;
+//         this->starterPrice = starterPrice;
+//         this->mainCoursePrice = mainCoursePrice;
+//         this->dessertPrice = dessertPrice;
+//         totalCost = starterPrice + mainCoursePrice + dessertPrice;
+//         customerName = cname;
+//         itemName = getOrderedItems();
+//         itemName2 = itemName;
+//     }
+
+//     string getReceipt()
+//     {
+//         time_t t = time(nullptr);
+//         tm *now = localtime(&t);
+//         // Format the current time as a string
+//         char buffer[20];
+//         strftime(buffer, sizeof(buffer), "%d/%m/%Y %H:%M:%S", now);
+//         string formattedDateTime(buffer);
+//         receipt += "\n*Customer Name : ";
+//         receipt += customerName;
+//         receipt += "\n";
+//         receipt += "Time: ";
+//         receipt += formattedDateTime;
+//         receipt += "\nOrdered Items:\n";
+//         receipt += itemName;
+//         receipt += "--------------------------\n";
+//         receipt += " Total Bill :      Rs.";
+//         receipt += to_string(totalCost);
+//         receipt += "\n--------------------------\n";
+//         // cout << receipt;
+//         return receipt;
+//     }
+
+//     void addReceiptToFile()
+//     {
+//         ofstream file("TextFiles/TotalReceiptFile.txt", ios::app);
+//         file << receipt;
+//         file.close();
+//         time_t t = time(nullptr);
+//         tm *now = localtime(&t);
+//         // Format the current time as a string
+//         char buffer[20];
+//         strftime(buffer, sizeof(buffer), "%d-%m-%Y", now);
+//         string formattedDateTime(buffer);
+//         string fileNamex = "TextFiles/DatedReceiptFiles/ReceiptFile:";
+//         fileNamex += formattedDateTime;
+//         fileNamex += ".txt";
+//         ofstream file2(fileNamex, ios::app);
+//         file2 << receipt;
+//         file2.close();
+//         ofstream file3("TextFiles/RevenueReceipt.txt", ios::app);
+//         file3 << totalCost << "\n";
+//         file3.close();
+//     }
+// };
+// class Rating
+// {
+// public:
+//     string name;
+//     int choice;
+//     enum rate
+//     {
+//         oneStar = 1,
+//         twoStar,
+//         threeStar,
+//         fourStar,
+//         fiveStar
+//     };
+
+//     void takeRating()
+//     {
+//         int choice;
+//         cout << "\nEnter 1 for Very Bad Experience" << endl;
+//         cout << "Enter 2 for Dissatisfied Experience" << endl;
+//         cout << "Enter 3 for Somewhat Good Experience" << endl;
+//         cout << "Enter 4 for Good Experience" << endl;
+//         cout << "Enter 5 for Excellent Experience\n"
+//              << endl;
+//     }
+
+//     void setRating(int rate)
+//     {
+//         choice = rate;
+//     }
+
+//     void displayRating()
+//     {
+//         switch (choice)
+//         {
+//         case oneStar:
+//             cout << "We are sorry for your unfavourable experience" << endl;
+//             break;
+//         case twoStar:
+//             cout << "Thank you for your feedback. We will try our best to give you a satisfactory service" << endl;
+//             break;
+//         case threeStar:
+//             cout << "Thank you for your feedback." << endl;
+//             break;
+//         case fourStar:
+//             cout << "We are glad that you liked our service" << endl;
+//             break;
+//         case fiveStar:
+//             cout << "Thank you for your positive feedback.It means a lot to us" << endl;
+//             break;
+//         default:
+//             cout << "Invalid response. Please try again" << endl;
+//         }
+//         ofstream file("TextFiles/RatingFile.txt", ios::app);
+//         file << choice << "\n";
+//         file.close();
+//     }
+// };
+// class Administrator : public Order
+// {
+// private:
+//     string username;
+//     string password;
+//     string customerDetail;
+
+// public:
+//     Administrator()
+//     {
+//         username = "ad12";
+//         password = "pwd12";
+//     }
+
+//     string getUsername()
+//     {
+//         return username;
+//     }
+
+//     string getPassword()
+//     {
+//         return password;
+//     }
+
+//     string getLogbook()
+//     {
+//         ifstream file("TextFiles/TotalReceiptFile.txt");
+
+//         string content((istreambuf_iterator<char>(file)), (istreambuf_iterator<char>())); // Read the entire file
+
+//         file.close(); // Close the file
+
+//         return content;
+//     }
+
+//     int totalRevenue()
+//     {
+//         ifstream inputFile("TextFiles/RevenueReceipt.txt"); // Assuming the file is named "numbers.txt"
+
+//         if (!inputFile.is_open())
+//         {
+//             cerr << "Unable to open the file." << std::endl;
+//             return -1; // Return an error code
+//         }
+//         int number;
+//         int sum = 0;
+//         while (inputFile >> number)
+//         {
+//             sum += number;
+//         }
+//         inputFile.close();
+//         return sum;
+//     }
+
+//     float avgRating()
+//     {
+//         ifstream inputFile("TextFiles/RatingFile.txt"); // Assuming the file is named "numbers.txt"
+
+//         if (!inputFile.is_open())
+//         {
+//             cerr << "Unable to open the file." << std::endl;
+//             return -1; // Return an error code
+//         }
+//         float number;
+//         float sum = 0.0f;
+//         float count = 0.0f;
+//         while (inputFile >> number)
+//         {
+//             sum += number;
+//             count += 1.0f;
+//         }
+
+//         float avg = sum / count;
+//         inputFile.close();
+//         return avg;
+//     }
+// };
+
+// int main()
+// {
+//     string reply;
+//     while (true)
+//     {
+//         system("clear");
+//         cout << "\nPress A if you are a customer" << endl;
+//         cout << "Press B if you are an administrator" << endl;
+//         cout << "Press X to exit\n";
+//         cout << "Enter your response here : ";
+//         cin >> reply;
+//         if (reply == "A" || reply == "a" || reply == "B" || reply == "b")
+//         {
+//             break;
+//         }
+//         else if (reply == "X" || reply == "x")
+//         {
+//             cout << "Are you sure you want to exit?(Y/N)" << endl;
+//             cin >> reply;
+//             if (reply == "y" || reply == "Y")
+//             {
+//                 break;
+//             }
+//             else if (reply == "n" || reply == "N")
+//             {
+//                 continue;
+//             }
+//             else
+//             {
+//                 cout << "Invalid response. Please enter Y for yes and N for no." << endl;
+//             }
+//         }
+//         else
+//         {
+//             cout << "Invalid response. Try again";
+//         }
+//     }
+
+//     if (reply == "A" || reply == "a")
+//     {
+//         system("clear");
+//         if (User::validateEntry())
+//         {
+//             User u;
+//             string customerFirstName, customerLastName;
+//             bool flag = true;
+//             while (flag)
+//             {
+//                 cout << "Enter your First Name : ";
+//                 cin >> customerFirstName;
+//                 u.setFirstName(customerFirstName);
+//                 cout << "Enter your Last Name : ";
+//                 cin >> customerLastName;
+//                 u.setLastName(customerLastName);
+//                 if (u.validateName())
+//                 {
+//                     flag = false;
+//                 }
+//                 else
+//                 {
+//                     cout << "\n(Your fullname should atleast contain 6 letters without any special characters or numbers)\n";
+//                 }
+//             }
+
+//             Starters st;
+//             MainCourse main;
+//             Dessert sweet;
+//             vector<thread> threads;
+//             threads.push_back(thread(&Starters::setMenuList, &st));
+//             threads.push_back(thread(&MainCourse::setMenuList, &main));
+//             threads.push_back(thread(thread(&Dessert::setMenuList, &sweet)));
+//             for(int i=0; i<3; i++){
+//                 threads[i].join();
+//             }
+//             vector<vector<string>> sList = st.getMenuList();
+//             vector<vector<string>> mList = main.getMenuList();
+//             vector<vector<string>> dList = sweet.getMenuList();
+//             bool ratingFlag = false;
+//             int starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
+//             vector<string> starterOrderList, mainOrderList, dessertOrderList;
+//             Order mainCourseOrderObj({}, mList, {}), starterOrderObj(sList, {}, {}), dessertOrderObj({}, {}, dList);
+//             // thread t4(&Order::Starters::setMenuList, &starterOrderObj);
+//             // thread t5(&Order::MainCourse::setMenuList, &mainCourseOrderObj);
+//             // thread t6(&Order::Dessert::setMenuList, &dessertOrderObj);
+//             // t4.join();
+//             // t5.join();
+//             // t6.join();
+
+//             while (true)
+//             {
+
+//                 cout << "\nPress A to see Restaurant Details" << endl;
+//                 cout << "Press B to see Menu" << endl;
+//                 cout << "Press C to get food receipt" << endl;
+//                 cout << "Press D to rate your experience" << endl;
+//                 cout << "Press X to exit\n\n";
+//                 string choice;
+//                 cout << "Enter your choice here : ";
+//                 cin >> choice;
+
+//                 if (choice == "A" || choice == "a")
+//                 {
+//                     system("clear");
+//                     Restaurant r;
+//                     r.showDetails();
+//                 }
+//                 else if (choice == "B" || choice == "b")
+//                 {
+//                     // Menu m;
+
+//                     while (true)
+//                     {
+//                         // system("clear");
+//                         cout << "\nPress S to see Starters Menu." << endl;
+//                         cout << "Press M to see Main Course Menu." << endl;
+//                         cout << "Press D to see Dessert Menu." << endl;
+//                         cout << "Press X to return to previous Menu." << endl;
+//                         cout << "\nEnter your choice here : ";
+//                         string menuChoice;
+//                         cin >> menuChoice;
+//                         if (menuChoice == "S" || menuChoice == "s")
+//                         {
+//                             system("clear");
+//                             // Starters st;
+//                             st.display();
+//                             string ch;
+//                             while (true)
+//                             {
+//                                 cout << "\nDo you wish to order something from Starters? \n(press Y for Yes or any other key for No) : ";
+//                                 cin >> ch;
+//                                 if (ch == "y" || ch == "Y")
+//                                 {
+//                                     Order localObj;
+//                                     cin.ignore();
+//                                     string orderInput;
+//                                     cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+//                                     getline(cin, orderInput);
+//                                     starterOrderObj.setOrderInput(orderInput);
+//                                     localObj.setOrderInput(orderInput);
+//                                     vector<string> orderList = starterOrderObj.getOrderList();
+//                                     for (string i : orderList)
+//                                     {
+//                                         starterOrderList.push_back(i);
+//                                     }
+//                                     starterPrice += starterOrderObj.getStarterOrderCost();
+//                                     usleep(2500000);
+//                                     system("clear");
+//                                     break;
+//                                 }
+//                                 else if (ch == "n" || ch == "N")
+//                                 {
+//                                     system("clear");
+//                                     break;
+//                                 }
+//                                 else
+//                                 {
+//                                     cout << "Please select Y for Yes and N for No only \n";
+//                                 }
+//                             }
+//                         }
+//                         else if (menuChoice == "M" || menuChoice == "m")
+//                         {
+//                             system("clear");
+//                             // MainCourse main;
+//                             main.display();
+//                             cout << endl;
+//                             string ch;
+//                             while (true)
+//                             {
+//                                 cout << "\nDo you wish to order something from Main course? \n(press Y for Yes or any other key for No) : ";
+//                                 cin >> ch;
+//                                 if (ch == "y" || ch == "Y")
+//                                 {
+//                                     cin.ignore();
+//                                     string orderInput;
+//                                     cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+//                                     getline(cin, orderInput);
+//                                     mainCourseOrderObj.setOrderInput(orderInput);
+//                                     vector<string> orderList = mainCourseOrderObj.getOrderList();
+//                                     for (string i : orderList)
+//                                     {
+//                                         mainOrderList.push_back(i);
+//                                     }
+//                                     mainCoursePrice += mainCourseOrderObj.getMainCourseOrderCost();
+//                                     break;
+//                                 }
+//                                 else if (ch == "n" || ch == "N")
+//                                 {
+//                                     break;
+//                                 }
+//                                 else
+//                                 {
+//                                     cout << "Please select Y for Yes and N for No only \n";
+//                                 }
+//                             }
+//                         }
+//                         else if (menuChoice == "D" || menuChoice == "d")
+//                         {
+//                             system("clear");
+//                             // Dessert sweet;
+//                             sweet.display();
+//                             cout << endl;
+//                             string ch;
+//                             while (true)
+//                             {
+//                                 cout << "\nDo you wish to order something from Dessert? \n(press Y for Yes or any other key for No) : ";
+//                                 cin >> ch;
+//                                 if (ch == "y" || ch == "Y")
+//                                 {
+//                                     cin.ignore();
+//                                     string orderInput;
+//                                     cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+//                                     getline(cin, orderInput);
+//                                     dessertOrderObj.setOrderInput(orderInput);
+//                                     vector<string> orderList = dessertOrderObj.getOrderList();
+//                                     for (string i : orderList)
+//                                     {
+//                                         dessertOrderList.push_back(i);
+//                                     }
+//                                     dessertPrice += dessertOrderObj.getDessertOrderCost();
+//                                     break;
+//                                 }
+//                                 else if (ch == "n" || ch == "N")
+//                                 {
+//                                     break;
+//                                 }
+//                                 else
+//                                 {
+//                                     cout << "Please select Y for Yes and N for No only \n";
+//                                 }
+//                             }
+//                         }
+//                         else if (menuChoice == "X" || menuChoice == "x")
+//                         {
+//                             system("clear");
+//                             break;
+//                         }
+//                         else
+//                         {
+//                             system("clear");
+//                             cout << "Invalid Response" << endl;
+//                         }
+//                     }
+//                 }
+//                 else if (choice == "C" || choice == "c")
+//                 {
+//                     if (!starterPrice && !mainCoursePrice && !dessertPrice)
+//                     {
+//                         system("clear");
+//                         cout << "\nYou have to order atleast one food item to generate a receipt.\n";
+//                     }
+//                     else
+//                     {
+//                         system("clear");
+//                         string customerName = u.getFullName();
+//                         Receipt bill(customerName, starterOrderList, mainOrderList, dessertOrderList, starterPrice, mainCoursePrice, dessertPrice);
+//                         string singleReceipt = bill.getReceipt();
+//                         cout << singleReceipt << endl;
+//                         bill.addReceiptToFile();
+//                         starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
+//                         starterOrderList.clear(), mainOrderList.clear(), dessertOrderList.clear();
+//                         starterOrderObj.setOrderList(), mainCourseOrderObj.setOrderList(), dessertOrderObj.setOrderList();
+//                         ratingFlag = true;
+//                     }
+//                 }
+//                 else if (choice == "D" || choice == "d")
+//                 {
+//                     Rating r;
+//                     int choice;
+//                     if (ratingFlag)
+//                     {
+//                         system("clear");
+//                         ratingFlag = false;
+//                         while (true)
+//                         {
+//                             r.takeRating();
+
+//                             cout << "Enter your response here: ";
+//                             if (cin >> choice)
+//                             {
+//                                 if (choice > 0 && choice < 6)
+//                                 {
+//                                     // Input is valid, break out of the loop
+//                                     break;
+//                                 }
+//                                 else
+//                                 {
+//                                     cout << "Please rate from 1-5. \n";
+//                                 }
+//                             }
+//                             else
+//                             {
+//                                 // Input is not an integer, clear the input buffer and ignore invalid input
+//                                 std::cin.clear();
+//                                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+//                                 std::cout << "Invalid input. Please enter a valid integer." << std::endl;
+//                             }
+//                         }
+//                         r.setRating(choice);
+//                         r.displayRating();
+//                         usleep(2500000);
+//                         system("clear");
+//                     }
+//                     else
+//                     {
+//                         system("clear");
+//                         cout << "\nPlease order food and generate food receipt before rating your experience. \n";
+//                     }
+//                 }
+//                 else if (choice == "X" || choice == "x")
+//                 {
+//                     if (!starterPrice && !mainCoursePrice && !dessertPrice)
+//                     {
+//                         cout << "Are you sure you want to exit?(Y/N)" << endl;
+//                         cin >> reply;
+//                         if (reply == "y" || reply == "Y")
+//                         {
+//                             system("clear");
+//                             break;
+//                         }
+//                         else if (reply == "n" || reply == "N")
+//                         {
+//                             system("clear");
+//                             continue;
+//                         }
+//                         else
+//                         {
+//                             cout << "Invalid response. Please enter Y for yes and N for no." << endl;
+//                             continue;
+//                         }
+//                     }
+//                     else
+//                     {
+//                         cout << "\nYou cannot exit without generating the food receipt.\n";
+//                     }
+//                 }
+//                 else
+//                 {
+//                     system("clear");
+//                     cout << " Invalid Response" << endl;
+//                 }
+//             }
+//         }
+//     }
+//     else if (reply == "B" || reply == "b")
+//     {
+//         system("clear");
+//         string uname, pwd;
+//         string sysUname, sysPwd;
+//         cout << "Welcome to Administrator Login portal" << endl;
+//         Administrator admin;
+//         int tries = 3;
+//         while (tries)
+//         {
+//             cout << "Username : ";
+//             cin >> uname;
+//             cout << "Password : ";
+//             cin >> pwd;
+
+//             sysUname = admin.getUsername();
+//             sysPwd = admin.getPassword();
+//             if (sysUname != uname || sysPwd != pwd)
+//             {
+//                 tries--;
+//                 cout << "You have entered the wrong credentials" << endl;
+//                 cout << "You have " << tries << " more tries left\n";
+//             }
+//             else
+//             {
+//                 break;
+//             }
+//         }
+//         if (!tries)
+//         {
+//             return 0;
+//         }
+
+//         cout << "\nYou are inside the Administrator portal\n\n";
+//         while (true)
+//         {
+//             cout << "Press A to access Transaction logbook." << endl;
+//             cout << "Press B to see average rating of the restaurant" << endl;
+//             cout << "Press C to access Total revenue of the restaurant" << endl;
+//             cout << "Press X to Exit" << endl;
+//             string choice;
+//             cin >> choice;
+//             if (choice == "A" || choice == "a")
+//             {
+//                 system("clear");
+//                 string log = admin.getLogbook();
+//                 cout << log << endl;
+//             }
+//             else if (choice == "B" || choice == "b")
+//             {
+//                 system("clear");
+//                 float average = admin.avgRating();
+//                 cout << "\nThe average rating of the restaurant is : " << average << "\n\n";
+//             }
+//             else if (choice == "C" || choice == "c")
+//             {
+//                 system("clear");
+//                 int totalRev = admin.totalRevenue();
+//                 cout << "\nThe total revenue collection of the restaurant is Rs." << totalRev << "\n\n";
+//             }
+//             else if (choice == "X" || choice == "x")
+//             {
+//                 cout << "Are you sure you want to exit?(Y/N)" << endl;
+//                 cin >> reply;
+//                 if (reply == "y" || reply == "Y")
+//                 {
+//                     system("clear");
+//                     break;
+//                 }
+//                 else if (reply == "n" || reply == "N")
+//                 {
+//                     system("clear");
+//                     continue;
+//                 }
+//                 else
+//                 {
+//                     cout << "Invalid response. Please enter Y for yes and N for no." << endl;
+//                     continue;
+//                 }
+//             }
+//             else
+//             {
+//                 cout << "Invalid response" << endl;
+//             }
+//         }
+//         // }
+//     }
+//     return 0;
+// }
+// * g++ -std=c++17  -o root -IHeader Class/*.cpp -lncurses Project.cpp

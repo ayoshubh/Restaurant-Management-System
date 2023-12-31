@@ -1,0 +1,16 @@
+
+*Customer Name : gyan dsa
+Time: 17/12/2023 13:49:43
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------
+
+*Customer Name : tony stark
+Time: 17/12/2023 13:55:16
+Ordered Items:
+Palak Paneer--------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------

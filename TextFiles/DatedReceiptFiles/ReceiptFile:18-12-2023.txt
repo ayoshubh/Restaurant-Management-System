@@ -1,0 +1,9 @@
+
+*Customer Name : ghn bnh
+Time: 18/12/2023 14:15:13
+Ordered Items:
+Paneer Pakoda-------Rs.100
+Ice Cream-----------Rs.30
+--------------------------
+ Total Bill :      Rs.130
+--------------------------

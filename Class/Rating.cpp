@@ -1,19 +1,34 @@
 #include "Rating.h"
 using namespace std;
-void Rating::takeRating() {
-    std::cout << "\nEnter 1 for Very Bad Experience" << std::endl;
-    std::cout << "Enter 2 for Dissatisfied Experience" << std::endl;
-    std::cout << "Enter 3 for Somewhat Good Experience" << std::endl;
-    std::cout << "Enter 4 for Good Experience" << std::endl;
-    std::cout << "Enter 5 for Excellent Experience\n" << std::endl;
+void Rating::takeRating()
+{
+    try
+    {
+        std::cout << "\nEnter 1 for Very Bad Experience" << std::endl;
+        std::cout << "Enter 2 for Dissatisfied Experience" << std::endl;
+        std::cout << "Enter 3 for Somewhat Good Experience" << std::endl;
+        std::cout << "Enter 4 for Good Experience" << std::endl;
+        std::cout << "Enter 5 for Excellent Experience\n"
+                  << std::endl;
+    }
+    catch (const std::exception &e)
+    {
+        // Handle other exceptions
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
 }
 
-void Rating::setRating(int rate) {
+void Rating::setRating(int rate)
+{
     choice = rate;
 }
 
-void Rating::displayRating() {
-    switch (choice) {
+void Rating::displayRating()
+{
+    try
+    {
+        switch (choice)
+        {
         case oneStar:
             std::cout << "We are sorry for your unfavorable experience" << std::endl;
             break;
@@ -31,9 +46,15 @@ void Rating::displayRating() {
             break;
         default:
             std::cout << "Invalid response. Please try again" << std::endl;
-    }
+        }
 
-    std::ofstream file("TextFiles/RatingFile.txt", std::ios::app);
-    file << choice << "\n";
-    file.close();
+        std::ofstream file("TextFiles/RatingFile.txt", std::ios::app);
+        file << choice << "\n";
+        file.close();
+    }
+    catch (const std::exception &e)
+    {
+        // Handle other exceptions
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
 }

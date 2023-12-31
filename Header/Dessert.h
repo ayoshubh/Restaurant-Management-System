@@ -11,6 +11,7 @@ private:
 public:
     Dessert();
     void setMenuList();
+    std::vector<std::vector<std::string>> getMenuList();
     void display();
 };
 

@@ -6,7 +6,6 @@
 #include "Dessert.h"
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <unistd.h>  // for usleep
 
 class Order : public Starters, public MainCourse, public Dessert {
@@ -15,10 +14,10 @@ protected:
     std::string fileName;
     std::vector<std::string> orderList;
     std::vector<std::string> EmptyOrderList;
-    std::queue<std::string> starterErrorList, mainErrorList, dessertErrorList;
     int starterPrice, mainCoursePrice, dessertPrice, totalCost;
 
 public:
+    Order(std::vector<std::vector<std::string>> sList = {}, std::vector<std::vector<std::string>> mList = {}, std::vector<std::vector<std::string>> dList = {});
     void setOrderInput(std::string orderInp);
     void setOrderList();
     std::vector<std::string> getOrderList();

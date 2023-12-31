@@ -1,0 +1,19 @@
+
+*Customer Name : shubh chauhan
+Time: 29/12/2023 18:19:27
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------
+
+*Customer Name : shubh shdjs
+Time: 29/12/2023 18:23:54
+Ordered Items:
+Paneer Pakoda-------Rs.100
+Bhajiya-------------Rs.40
+Idli----------------Rs.35
+Papdi chaat---------Rs.45
+--------------------------
+ Total Bill :      Rs.220
+--------------------------

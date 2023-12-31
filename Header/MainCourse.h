@@ -11,6 +11,7 @@ private:
 public:
     MainCourse();
     void setMenuList();
+    std::vector<std::vector<std::string>> getMenuList();
     void display();
 };
 

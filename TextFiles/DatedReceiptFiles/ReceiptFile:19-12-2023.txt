@@ -1,0 +1,8 @@
+
+*Customer Name : shambhu lal
+Time: 19/12/2023 10:12:29
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------
