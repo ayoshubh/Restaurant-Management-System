@@ -1,20 +1,46 @@
+/**
+ * @file Dessert.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains implementation for Dessert class which is inherited from Menu class
+ * @version 0.1
+ * @date 2024-01-08
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #include "Dessert.h"
 
+/**
+ * @brief Construct a new Dessert:: Dessert object
+ * data member fileName has been initialised in the constructor.
+ */
 Dessert::Dessert()
 {
     this->fileName = "TextFiles/DessertFile.txt";
 }
 
+/**
+ * @brief Setter method to initialise data member menuList.
+ */
 void Dessert::setMenuList()
 {
     this->menuList = getMenu(fileName);
 }
 
+/**
+ * @brief getter method to return the menu of the dessert.
+ * @return std::vector<std::vector<std::string>> 
+ */
 std::vector<std::vector<std::string>> Dessert::getMenuList()
 {
     return this->menuList;
 }
 
+/**
+ * @brief This method is used to display the Dessert menu in a tabular form.
+ * 
+ */
 void Dessert::display()
 {
     std::cout << " _____Dessert Menu_____ \n\n";

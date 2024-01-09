@@ -23,6 +23,14 @@ void Rating::setRating(int rate)
     choice = rate;
 }
 
+void Rating::setFeedback(std::string feedback){
+    this->feedback=feedback;
+    std::ofstream file("TextFiles/Feedback.csv", std::ios::app);
+    file<<this->feedback;
+    file<<endl;
+    file.close();
+}
+
 void Rating::displayRating()
 {
     try

@@ -1,4 +1,19 @@
+/**
+ * @file Menu.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains implementation for Menu class.
+ * @version 0.1
+ * @date 2024-01-09
+ * @copyright Copyright (c) 2024
+ */
+
 #include "Menu.h"
+
+/**
+ * @brief This method fetches data of the menu from an external .txt file.
+ * @param filename 
+ * @return std::vector<std::vector<std::string>> 
+ */
 std::vector<std::vector<std::string>> Menu::getMenu(std::string filename)
 {
     try

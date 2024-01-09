@@ -8,6 +8,8 @@
 #include <thread>
 #include <ncurses.h>
 #include <stdexcept>
+#include <mutex>
+#include <condition_variable>
 #include "Restaurant.h"
 #include "User.h"
 #include "Menu.h"
@@ -92,7 +94,7 @@ int main()
                 vector<thread> threads;
                 threads.push_back(thread(&Starters::setMenuList, &st));
                 threads.push_back(thread(&MainCourse::setMenuList, &main));
-                threads.push_back(thread(thread(&Dessert::setMenuList, &sweet)));
+                threads.push_back(thread(&Dessert::setMenuList, &sweet));
                 for (int i = 0; i < 3; i++)
                 {
                     threads[i].join();
@@ -104,12 +106,6 @@ int main()
                 int starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
                 vector<string> starterOrderList, mainOrderList, dessertOrderList;
                 Order mainCourseOrderObj({}, mList, {}), starterOrderObj(sList, {}, {}), dessertOrderObj({}, {}, dList);
-                // thread t4(&Order::Starters::setMenuList, &starterOrderObj);
-                // thread t5(&Order::MainCourse::setMenuList, &mainCourseOrderObj);
-                // thread t6(&Order::Dessert::setMenuList, &dessertOrderObj);
-                // t4.join();
-                // t5.join();
-                // t6.join();
                 while (true)
                 {
                     // cout << "\nPress A to see Restaurant Details" << endl;
@@ -268,11 +264,17 @@ int main()
                         else
                         {
                             system("clear");
+                            std::string singleReceipt;
                             string customerName = u.getFullName();
                             Receipt bill(customerName, starterOrderList, mainOrderList, dessertOrderList, starterPrice, mainCoursePrice, dessertPrice);
-                            string singleReceipt = bill.getReceipt();
+                            std::thread thread1(&Receipt::addReceiptToFile, &bill);
+                            std::thread thread2(&Receipt::addReceiptToIndividualFile, &bill);
+                            singleReceipt = bill.getReceipt();
                             cout << singleReceipt << endl;
-                            bill.addReceiptToFile();
+                            bill.notify(singleReceipt);
+                            thread1.join();
+                            thread2.join();
+                            // bill.addReceiptToFile();
                             starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
                             starterOrderList.clear(), mainOrderList.clear(), dessertOrderList.clear();
                             starterOrderObj.setOrderList(), mainCourseOrderObj.setOrderList(), dessertOrderObj.setOrderList();
@@ -315,6 +317,17 @@ int main()
                             r.setRating(choice);
                             r.displayRating();
                             usleep(2500000);
+                            char feedbackChoice;
+                            std::string feedbackString;
+                            std::cout<<"Do you wish to write us a feedback too?(Y/N)\n";
+                            std::cin>>feedbackChoice;
+                            if(feedbackChoice=='y' || feedbackChoice=='Y'){
+                                cout<<"Please input how you feel about our service below:\n";
+                                cin.ignore();
+                                getline(cin,feedbackString);
+                                r.setFeedback(feedbackString);
+                            }
+                            return 0;
                             system("clear");
                         }
                         else
@@ -440,7 +453,10 @@ int main()
                 if (choice == "A" || choice == "a")
                 {
                     system("clear");
-                    string log = admin.getLogbook();
+                    int date, month, year;
+                    std::cout<<"Input the date, month number and year: ";
+                    std::cin >> date >> month >> year;
+                    string log = admin.getLogbook(date,month,year);
                     cout << log << endl;
                 }
                 else if (choice == "B" || choice == "b")

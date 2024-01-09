@@ -7,13 +7,18 @@
 #include <vector>
 #include <fstream>
 #include <ctime>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
 class Receipt : public User, public Order {
 private:
     std::string itemName, itemName2, customerName, receipt, str;
     std::vector<std::string> starterStr, mainStr, dessertStr;
     int starterPrice, mainCoursePrice, dessertPrice, totalCost;
-
+    std::mutex mtx;
+    std::condition_variable cv;
+    bool receiptGenerated;
     std::string getOrderedItems();
 
 public:
@@ -21,6 +26,9 @@ public:
     
     std::string getReceipt();
     void addReceiptToFile();
+    void writeToFile(const std::string& name, const std::string& filename);
+    void addReceiptToIndividualFile();
+    void notify(const std::string& name);
 };
 
 #endif // RECEIPT_H

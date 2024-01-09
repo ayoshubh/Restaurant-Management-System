@@ -1,3 +1,12 @@
+/**
+ * @file Administrator.h
+ * @author Shubham Chauhan
+ * @brief This header file contains declarations for Menu class.
+ * @version 0.1
+ * @date 2024-01-08
+ * @copyright Copyright (c) 2024
+ */
+
 #ifndef DESSERT_H
 #define DESSERT_H
 
@@ -6,7 +15,7 @@
 
 class Dessert : public Menu {
 private:
-    std::string fileName;
+    std::string fileName; // string used to store the name of the file where menu data is stored.
 
 public:
     Dessert();

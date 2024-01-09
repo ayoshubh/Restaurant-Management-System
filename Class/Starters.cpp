@@ -1,20 +1,42 @@
+/**
+ * @file Starters.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains implementation for Starters class which is inherited from Menu class.
+ * @version 0.1
+ * @date 2024-01-08
+ * @copyright Copyright (c) 2024
+ */
 #include "Starters.h"
-using namespace std;
+
+/**
+ * @brief Construct a new Starters:: Starters object
+ * data member fileName has been initialised in the constructor.
+ */
 Starters::Starters()
 {
     this->fileName = "TextFiles/StarterFile.txt";
 }
 
+/**
+ * @brief Setter method to initialise data member menuList.
+ */
 void Starters::setMenuList()
 {
     this->menuList = getMenu(fileName);
 }
 
-    std::vector<std::vector<std::string>> Starters::getMenuList()
-    {
-        return this->menuList;
-    }
+/**
+ * @brief getter method to return the menu of the starters.
+ * @return std::vector<std::vector<std::string>> 
+ */
+std::vector<std::vector<std::string>> Starters::getMenuList()
+{
+    return this->menuList;
+}
 
+/**
+ * @brief This method is used to display the starters' menu in a tabular form.
+ */
 void Starters::display()
 {
     std::cout << " _____Starters Menu_____ \n\n";

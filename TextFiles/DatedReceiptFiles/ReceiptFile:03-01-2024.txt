@@ -1,0 +1,76 @@
+
+*Customer Name : golu kalia
+Time: 03/01/2024 13:42:12
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------
+
+*Customer Name : werfgh shdjf
+Time: 03/01/2024 14:08:35
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------
+
+*Customer Name : qwer ewqw
+Time: 03/01/2024 14:11:04
+Ordered Items:
+Bhajiya-------------Rs.40
+--------------------------
+ Total Bill :      Rs.40
+--------------------------
+
+*Customer Name : dfgd fgdf
+Time: 03/01/2024 14:13:10
+Ordered Items:
+Aloo Pakoda---------Rs.30
+--------------------------
+ Total Bill :      Rs.30
+--------------------------
+
+*Customer Name : qwds asdf
+Time: 03/01/2024 14:14:15
+Ordered Items:
+Fried Rice----------Rs.300
+--------------------------
+ Total Bill :      Rs.300
+--------------------------
+
+*Customer Name : viraj kadia
+Time: 03/01/2024 18:10:47
+Ordered Items:
+Cheeseballs---------Rs.50
+Aloo Pakoda---------Rs.30
+--------------------------
+ Total Bill :      Rs.80
+--------------------------
+
+*Customer Name : shubh singh
+Time: 03/01/2024 19:10:09
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------
+
+*Customer Name : shubham chauhan
+Time: 03/01/2024 19:19:21
+Ordered Items:
+Paneer Pakoda-------Rs.100
+Aloo Pakoda---------Rs.30
+Fried Rice----------Rs.300
+Plum cobbler--------Rs.45
+--------------------------
+ Total Bill :      Rs.475
+--------------------------
+
+*Customer Name : shubham chauhan
+Time: 03/01/2024 19:21:12
+Ordered Items:
+Paneer Pakoda-------Rs.100
+--------------------------
+ Total Bill :      Rs.100
+--------------------------

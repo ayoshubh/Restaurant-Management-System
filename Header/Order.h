@@ -1,3 +1,12 @@
+/**
+ * @file Order.h
+ * @author Shubham Chauhan
+ * @brief This file contains declarations for Order Class.
+ * @version 0.1
+ * @date 2024-01-09
+ * @copyright Copyright (c) 2024
+ */
+
 #ifndef ORDER_H
 #define ORDER_H
 

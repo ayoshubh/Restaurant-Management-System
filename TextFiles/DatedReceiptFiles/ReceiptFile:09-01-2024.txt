@@ -1,0 +1,29 @@
+
+*Customer Name : shankar mahadevan
+Time: 09/01/2024 14:24:29
+Ordered Items:
+Paneer Pakoda-------Rs.100
+Cheeseballs---------Rs.50
+--------------------------
+ Total Bill :      Rs.150
+--------------------------
+
+
+*Customer Name : ash good
+Time: 09/01/2024 14:27:31
+Ordered Items:
+Idli----------------Rs.35
+--------------------------
+ Total Bill :      Rs.35
+--------------------------
+
+
+*Customer Name : shalini niketan
+Time: 09/01/2024 17:08:22
+Ordered Items:
+Bhajiya-------------Rs.40
+Vada pav------------Rs.20
+--------------------------
+ Total Bill :      Rs.60
+--------------------------
+
