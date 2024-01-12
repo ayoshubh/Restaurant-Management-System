@@ -1,0 +1,136 @@
+\doxysection{Receipt Class Reference}
+\hypertarget{class_receipt}{}\label{class_receipt}\index{Receipt@{Receipt}}
+Inheritance diagram for Receipt\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_receipt}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_receipt_a69fb935bae9afbda97e3016895fc0de5}\label{class_receipt_a69fb935bae9afbda97e3016895fc0de5} 
+void {\bfseries add\+Receipt\+To\+File} ()
+\item 
+\Hypertarget{class_receipt_a33ba83dabdddea80fe6d28fd95e04f91}\label{class_receipt_a33ba83dabdddea80fe6d28fd95e04f91} 
+void {\bfseries add\+Receipt\+To\+Individual\+File} ()
+\item 
+\Hypertarget{class_receipt_ad0f57a48d989800dde1d40ce9085df85}\label{class_receipt_ad0f57a48d989800dde1d40ce9085df85} 
+std\+::string {\bfseries get\+Receipt} ()
+\item 
+\Hypertarget{class_receipt_a5f6df32e2f42d7a19a44364fb5ff74e3}\label{class_receipt_a5f6df32e2f42d7a19a44364fb5ff74e3} 
+void {\bfseries notify} (const std\+::string \&name)
+\item 
+\Hypertarget{class_receipt_a56029a4e5a84ff070f88030d3b399174}\label{class_receipt_a56029a4e5a84ff070f88030d3b399174} 
+{\bfseries Receipt} (std\+::string cname, std\+::vector$<$ std\+::string $>$ starter\+Str, std\+::vector$<$ std\+::string $>$ main\+Str, std\+::vector$<$ std\+::string $>$ dessert\+Str, int starter\+Price=0, int main\+Course\+Price=0, int dessert\+Price=0)
+\item 
+\Hypertarget{class_receipt_a9a4f12de4abf9a2e642ebd63ee05d6e0}\label{class_receipt_a9a4f12de4abf9a2e642ebd63ee05d6e0} 
+void {\bfseries write\+To\+File} (const std\+::string \&content, const std\+::string \&filename)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_user_a41aaa8d1f105ff225353dfe895306fde}{get\+Full\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Getter method to return full name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_ab7454a2f8081f9d69fb67621013dbb91}{set\+First\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em a setter method to set the first\+Name of the user before validating the user input \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a7b98a36916f0fdf576b71dfc9ef9c1bf}{set\+Last\+Name}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em a setter method to set the last\+Name of the user before validating the user input \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_user_ad958c48ca4db4f9423429a31a9ddbf65}{validate\+Name}} () const
+\begin{DoxyCompactList}\small\item\em method to validate name of the user \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_order}{Order}}}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_order_a8710b9b1cb5b620854a7b1adb943000a}{get\+Dessert\+Order\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em This member function calculates the cost of dessert ordered by the user. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_order_a9e09c65401533511bf7bdb4fccc7a48c}{get\+Main\+Course\+Order\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em This member function calculates the cost of main course ordered by the user. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_order_acc5ba0187e8f1dce9a52cb0a6ca6c109}{get\+Order\+List}} ()
+\begin{DoxyCompactList}\small\item\em This method does string interpolation and stores each item\+Id in order\+Input as a vector of string and returns it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_order_a7c862ab362745b402d88d24f10364f0e}{get\+Starter\+Order\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em This member function calculates the cost of starters ordered by the user. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_order_adf40e77424c22e495b8e752e27c28b80}{Order}} (std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ s\+List=\{\}, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ m\+List=\{\}, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ d\+List=\{\})
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_order}{Order}\+:\+: \doxylink{class_order}{Order} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_order_a6bd9cc1f240d32b390353976031b9184}{set\+Order\+Input}} (std\+::string order\+Inp)
+\begin{DoxyCompactList}\small\item\em A setter method used to initialise the data member order\+Input string with the input given by the user which includes the item\+Id of item(s) they want to order. \end{DoxyCompactList}\item 
+void {\bfseries set\+Order\+List} ()
+\begin{DoxyCompactList}\small\item\em setter method to clear order\+List \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_starters}{Starters}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_starters_a8ee39381ab4fbc0c6bd07fe4f1335caf}{display}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the starters\textquotesingle{} menu in a tabular form. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_starters_a114b9aa84d7c9fa8aebfa7c2dc362cac}{get\+Menu\+List}} ()
+\begin{DoxyCompactList}\small\item\em getter method to return the menu of the starters. \end{DoxyCompactList}\item 
+void {\bfseries set\+Menu\+List} ()
+\begin{DoxyCompactList}\small\item\em Setter method to initialise data member menu\+List. \end{DoxyCompactList}\item 
+{\bfseries Starters} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_starters}{Starters}\+:\+: \doxylink{class_starters}{Starters} object data member file\+Name has been initialised in the constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_menu}{Menu}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_menu_aa5bfecbe0fe3fe7c0e173d9edb013b7a}{get\+Menu}} (std\+::string filename)
+\begin{DoxyCompactList}\small\item\em This method fetches data of the menu from an external .txt file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_main_course}{Main\+Course}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_main_course_a7c29bf6c0146fec53f40244481e1ef8e}{display}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the Main course menu in a tabular form. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_main_course_a36967a576f723499696727d72024ff5a}{get\+Menu\+List}} ()
+\begin{DoxyCompactList}\small\item\em getter method to return the menu of the main course. \end{DoxyCompactList}\item 
+{\bfseries Main\+Course} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Main Course\+:\+: Main Course object data member file\+Name has been initialised in the constructor. \end{DoxyCompactList}\item 
+void {\bfseries set\+Menu\+List} ()
+\begin{DoxyCompactList}\small\item\em Setter method to initialise data member menu\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_dessert}{Dessert}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Dessert} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_dessert}{Dessert}\+:\+: \doxylink{class_dessert}{Dessert} object data member file\+Name has been initialised in the constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dessert_af3881cd3faccf961be0fca89a6fd366c}{display}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the \doxylink{class_dessert}{Dessert} menu in a tabular form. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_dessert_a738a97074b942c3bc36e692fcca83ad8}{get\+Menu\+List}} ()
+\begin{DoxyCompactList}\small\item\em getter method to return the menu of the dessert. \end{DoxyCompactList}\item 
+void {\bfseries set\+Menu\+List} ()
+\begin{DoxyCompactList}\small\item\em Setter method to initialise data member menu\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_user}{User}}}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_user_aef43bea7a35b4c1b385fd79738d05399}{validate\+Entry}} ()
+\begin{DoxyCompactList}\small\item\em A static method to validate entry of the user in the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_restaurant}{Restaurant}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Restaurant} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_restaurant}{Restaurant}\+:\+: \doxylink{class_restaurant}{Restaurant} object. \end{DoxyCompactList}\item 
+void {\bfseries show\+Details} ()
+\begin{DoxyCompactList}\small\item\em Member function definition to show restaurant details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_order}{Order}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries dessert\+Price}
+\item 
+int {\bfseries main\+Course\+Price}
+\item 
+std\+::string {\bfseries order\+Input}
+\item 
+std\+::vector$<$ std\+::string $>$ {\bfseries order\+List}
+\item 
+int {\bfseries starter\+Price}
+\item 
+int {\bfseries total\+Cost}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_menu}{Menu}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ {\bfseries menu\+List}
+\item 
+std\+::string {\bfseries single\+Item\+Detail}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/shubham/\+Desktop/dev/\+C++/\+Header/\mbox{\hyperlink{_receipt_8h}{Receipt.\+h}}\item 
+/\+Users/shubham/\+Desktop/dev/\+C++/\+Class/Receipt.\+cpp\end{DoxyCompactItemize}

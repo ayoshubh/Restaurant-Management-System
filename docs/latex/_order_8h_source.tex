@@ -1,0 +1,34 @@
+\doxysection{Order.\+h}
+\hypertarget{_order_8h_source}{}\label{_order_8h_source}\index{/Users/shubham/Desktop/dev/C++/Header/Order.h@{/Users/shubham/Desktop/dev/C++/Header/Order.h}}
+\mbox{\hyperlink{_order_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ ORDER\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ ORDER\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_starters_8h}{Starters.h}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_main_course_8h}{MainCourse.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_dessert_8h}{Dessert.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <unistd.h>}\ \ \textcolor{comment}{//\ for\ usleep}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_order}{Order}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_starters}{Starters}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_main_course}{MainCourse}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_dessert}{Dessert}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ orderInput;\ \textcolor{comment}{//\ this\ string\ stores\ itemId\ separated\ by\ comma\ ordered\ by\ user}}
+\DoxyCodeLine{00023\ \ \ \ \ std::vector<std::string>\ orderList;\ \textcolor{comment}{//\ this\ vector\ stores\ itemId\ of\ items\ ordered\ by\ user}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{int}\ starterPrice,\ mainCoursePrice,\ dessertPrice,\ totalCost;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_order_adf40e77424c22e495b8e752e27c28b80}{Order}}(std::vector<std::vector<std::string>>\ sList\ =\ \{\},\ std::vector<std::vector<std::string>>\ mList\ =\ \{\},\ std::vector<std::vector<std::string>>\ dList\ =\ \{\});}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_order_a6bd9cc1f240d32b390353976031b9184}{setOrderInput}}(std::string\ orderInp);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_order_a61ef742577f6687d3c4cd070e3d896d5}{setOrderList}}();}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{class_order_acc5ba0187e8f1dce9a52cb0a6ca6c109}{getOrderList}}();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_order_a7c862ab362745b402d88d24f10364f0e}{getStarterOrderCost}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_order_a9e09c65401533511bf7bdb4fccc7a48c}{getMainCourseOrderCost}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_order_a8710b9b1cb5b620854a7b1adb943000a}{getDessertOrderCost}}();}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ORDER\_H}}
+
+\end{DoxyCode}

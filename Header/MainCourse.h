@@ -1,5 +1,5 @@
 /**
- * @file Administrator.h
+ * @file MainCourse.h
  * @author Shubham Chauhan
  * @brief This header file contains declarations for MainCourse class which is inherited from Menu class.
  * @version 0.1

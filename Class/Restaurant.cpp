@@ -1,6 +1,16 @@
+/**
+ * @file Restaurant.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains the implementation details for the Restaurant file
+ * @version 0.1
+ * @date 2024-01-10
+ * @copyright Copyright (c) 2024
+ */
 #include "Restaurant.h"
-using namespace std;
-// Constructor definition
+
+/**
+ * @brief Construct a new Restaurant:: Restaurant object
+ */
 Restaurant::Restaurant() {
     openTime = 10;
     closeTime = 12;
@@ -10,7 +20,9 @@ Restaurant::Restaurant() {
     email = "foodvilla@gmail.com";
 }
 
-// Member function definition to show restaurant details
+/**
+ * @brief Member function definition to show restaurant details
+ */
 void Restaurant::showDetails() {
     std::cout << " \n**********  Welcome to our Restaurant " << restaurantName << "  ********** " << std::endl;
     std::cout << "We are located in " << location << std::endl;

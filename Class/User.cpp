@@ -1,5 +1,18 @@
+/**
+ * @file User.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains implementation for the User class
+ * @version 0.1
+ * @date 2024-01-10
+ * @copyright Copyright (c) 2024
+ */
+
 #include "User.h"
-using namespace std;
+
+/**
+ * @brief a setter method to set the firstName of the user before validating the user input 
+ * @param name 
+ */
 void User::setFirstName(std::string name) {
     if (name.size() >= 3 && name.size() <= 20) {
         for (char ch : name) {
@@ -14,6 +27,10 @@ void User::setFirstName(std::string name) {
     }
 }
 
+/**
+ * @brief a setter method to set the lastName of the user before validating the user input 
+ * @param name 
+ */
 void User::setLastName(std::string name) {
     if (name.size() >= 3 && name.size() <= 30) {
         for (char ch : name) {
@@ -29,14 +46,29 @@ void User::setLastName(std::string name) {
     }
 }
 
+/**
+ * @brief Getter method to return full name
+ * @return std::string 
+ */
 std::string User::getFullName() const {
     return fullName;
 }
 
+/**
+ * @brief method to validate name of the user
+ * @return true 
+ * @return false 
+ */
 bool User::validateName() const {
     return !(firstName.empty() || lastName.empty());
 }
 
+/**
+ * @brief A static method to validate entry of the user in the system.
+ * 
+ * @return true 
+ * @return false 
+ */
 bool User::validateEntry() {
     auto now = std::chrono::system_clock::now();
     std::time_t current_time = std::chrono::system_clock::to_time_t(now);
@@ -48,6 +80,6 @@ bool User::validateEntry() {
         return true;
     } else {
         std::cout << "Sorry, we are not open right now \n";
-        return true;
+        return false;
     }
 }

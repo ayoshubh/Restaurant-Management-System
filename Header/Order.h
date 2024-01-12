@@ -19,10 +19,8 @@
 
 class Order : public Starters, public MainCourse, public Dessert {
 protected:
-    std::string orderInput;
-    std::string fileName;
-    std::vector<std::string> orderList;
-    std::vector<std::string> EmptyOrderList;
+    std::string orderInput; // this string stores itemId separated by comma ordered by user
+    std::vector<std::string> orderList; // this vector stores itemId of items ordered by user
     int starterPrice, mainCoursePrice, dessertPrice, totalCost;
 
 public:

@@ -142,13 +142,11 @@ int main()
                                     cin >> ch;
                                     if (ch == "y" || ch == "Y")
                                     {
-                                        Order localObj;
                                         cin.ignore();
                                         string orderInput;
                                         cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
                                         getline(cin, orderInput);
                                         starterOrderObj.setOrderInput(orderInput);
-                                        localObj.setOrderInput(orderInput);
                                         vector<string> orderList = starterOrderObj.getOrderList();
                                         for (string i : orderList)
                                         {
@@ -291,7 +289,7 @@ int main()
                             ratingFlag = false;
                             while (true)
                             {
-                                r.takeRating();
+                                r.showRatingLevel();
 
                                 cout << "Enter your response here: ";
                                 if (cin >> choice)
@@ -315,16 +313,17 @@ int main()
                                 }
                             }
                             r.setRating(choice);
-                            r.displayRating();
+                            r.displayResponse();
                             usleep(2500000);
                             char feedbackChoice;
                             std::string feedbackString;
-                            std::cout<<"Do you wish to write us a feedback too?(Y/N)\n";
-                            std::cin>>feedbackChoice;
-                            if(feedbackChoice=='y' || feedbackChoice=='Y'){
-                                cout<<"Please input how you feel about our service below:\n";
+                            std::cout << "Do you wish to write us a feedback too?(Y/N)\n";
+                            std::cin >> feedbackChoice;
+                            if (feedbackChoice == 'y' || feedbackChoice == 'Y')
+                            {
+                                cout << "Please input how you feel about our service below:\n";
                                 cin.ignore();
-                                getline(cin,feedbackString);
+                                getline(cin, feedbackString);
                                 r.setFeedback(feedbackString);
                             }
                             return 0;
@@ -453,23 +452,43 @@ int main()
                 if (choice == "A" || choice == "a")
                 {
                     system("clear");
-                    int date, month, year;
-                    std::cout<<"Input the date, month number and year: ";
+                    std::string date, month, year;
+                    std::cout << "Input the date, month number and year: ";
                     std::cin >> date >> month >> year;
-                    string log = admin.getLogbook(date,month,year);
+                    string log = admin.getLogbook(date, month, year);
                     cout << log << endl;
                 }
                 else if (choice == "B" || choice == "b")
                 {
                     system("clear");
+
                     float average = admin.avgRating();
                     cout << "\nThe average rating of the restaurant is : " << average << "\n\n";
                 }
                 else if (choice == "C" || choice == "c")
                 {
                     system("clear");
-                    int totalRev = admin.totalRevenue();
+                    char ch;
+                    std::cout << "Press A if you want to see yearly revenue of the restaurant. \n";
+                    std::cout << "Press B if you want to see monthly revenue of the restaurant. \n";
+                    cin >> ch;
+                    std::string month, year;
+                    int totalRev;
+                    switch (ch)
+                    {
+                    case 'B':
+                        cout << "Enter the month(1-12) and the year(yyyy): ";
+                        cin >> month >> year;
+                        totalRev = admin.totalRevenue(month, year);
+                        break;
+                    case 'A':
+                        cout << "Enter the year(yyyy): ";
+                        cin >> year;
+                        totalRev = admin.totalRevenue("",year);
+                        break;
+                    }
                     cout << "\nThe total revenue collection of the restaurant is Rs." << totalRev << "\n\n";
+
                 }
                 else if (choice == "X" || choice == "x")
                 {

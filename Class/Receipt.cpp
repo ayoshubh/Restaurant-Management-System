@@ -1,17 +1,12 @@
 #include "Receipt.h"
-using namespace std;
 Receipt::Receipt(std::string cname, std::vector<std::string> starterStr, std::vector<std::string> mainStr, std::vector<std::string> dessertStr, int starterPrice, int mainCoursePrice, int dessertPrice)
 {
     this->starterStr = starterStr;
     this->mainStr = mainStr;
     this->dessertStr = dessertStr;
-    this->starterPrice = starterPrice;
-    this->mainCoursePrice = mainCoursePrice;
-    this->dessertPrice = dessertPrice;
     totalCost = starterPrice + mainCoursePrice + dessertPrice;
     customerName = cname;
     itemName = getOrderedItems();
-    itemName2 = itemName;
     receiptGenerated = false;
 }
 
@@ -126,12 +121,12 @@ std::string Receipt::getReceipt()
     }
 }
 
-void Receipt::writeToFile(const std::string &name, const std::string &filename)
+void Receipt::writeToFile(const std::string &content, const std::string &filename)
 {
     std::ofstream file(filename, std::ios::app);
     if (file.is_open())
     {
-        file << name << "\n";
+        file << content << "\n";
         file.close();
         // std::cout << "Thread wrote to file: " << filename << std::endl;
     }
@@ -145,30 +140,22 @@ void Receipt::addReceiptToFile()
 {
     try
     {
-        std::ofstream file2("TextFiles/RevenueReceipt.txt", std::ios::app);
-        if (!file2.is_open())
-        {
-            throw std::runtime_error("Failed to open the RevenueReceipt file");
-        }
-        file2 << totalCost << "\n";
-        file2.close();
-
         time_t t = time(nullptr);
         tm *now = localtime(&t);
         // Format the current time as a string
         char buffer[20];
         strftime(buffer, sizeof(buffer), "%m-%Y", now);
-        string formattedDateTime(buffer);
-        string fileNamex = "TextFiles/RevenueFiles/RevenueOf:";
+        std::string formattedDateTime(buffer);
+        std::string fileNamex = "TextFiles/RevenueFiles/RevenueOf:";
         fileNamex += formattedDateTime;
         fileNamex += ".txt";
-        writeToFile(to_string(totalCost), fileNamex);
+        writeToFile(std::to_string(totalCost), fileNamex);
         strftime(buffer, sizeof(buffer), "%Y", now);
-        string formattedDateTime2(buffer);
+        std::string formattedDateTime2(buffer);
         fileNamex = "TextFiles/RevenueFiles/RevenueOf:";
         fileNamex += formattedDateTime2;
         fileNamex += ".txt";
-        writeToFile(to_string(totalCost), fileNamex);
+        writeToFile(std::to_string(totalCost), fileNamex);
         std::unique_lock<std::mutex> lock(mtx);
         cv.wait(lock, [this]
                 { return receiptGenerated; });
@@ -188,28 +175,13 @@ void Receipt::addReceiptToFile()
 
 void Receipt::addReceiptToIndividualFile()
 {
-    // time_t t = time(nullptr);
-    // tm *now = localtime(&t);
-    // // Format the current time as a string
-    // char buffer[20];
-    // strftime(buffer, sizeof(buffer), "%d-%m-%Y", now);
-    // string formattedDateTime(buffer);
-    // string fileNamex = "TextFiles/DatedReceiptFiles/ReceiptFile:";
-    // fileNamex += formattedDateTime;
-    // fileNamex += ".txt";
-    // ofstream file3(fileNamex, ios::app);
-    // std::unique_lock<std::mutex> lock(mtx);
-    // cv.wait(lock, [this] { return receipt; });
-    // file3 << receipt;
-    // file3.close();
-
     time_t t = time(nullptr);
     tm *now = localtime(&t);
     // Format the current time as a string
     char buffer[20];
     strftime(buffer, sizeof(buffer), "%d-%m-%Y", now);
-    string formattedDateTime(buffer);
-    string fileNamex = "TextFiles/DatedReceiptFiles/ReceiptFile:";
+    std::string formattedDateTime(buffer);
+    std::string fileNamex = "TextFiles/DatedReceiptFiles/ReceiptFile:";
     fileNamex += formattedDateTime;
     fileNamex += ".txt";
     std::unique_lock<std::mutex> lock(mtx);

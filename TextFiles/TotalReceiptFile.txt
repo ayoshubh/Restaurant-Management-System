@@ -441,3 +441,26 @@ Vada pav------------Rs.20
  Total Bill :      Rs.60
 --------------------------
 
+
+*Customer Name : dhinchak pooja
+Time: 10/01/2024 19:25:53
+Ordered Items:
+Paneer Pakoda-------Rs.100
+Idli----------------Rs.35
+Fried Rice----------Rs.300
+Chhole Bhature------Rs.230
+--------------------------
+ Total Bill :      Rs.665
+--------------------------
+
+
+*Customer Name : shubh chintak
+Time: 10/01/2024 20:31:29
+Ordered Items:
+Paneer Pakoda-------Rs.100
+Fried Rice----------Rs.300
+Ice Cream-----------Rs.30
+--------------------------
+ Total Bill :      Rs.430
+--------------------------
+

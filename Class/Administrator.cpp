@@ -63,11 +63,11 @@ std::string Administrator::getPassword()
  * @param year
  * @return std::string 
  */
-std::string Administrator::getLogbook(int date, int month, int year)
+std::string Administrator::getLogbook(std::string date, std::string month, std::string year)
 {
     try
     {
-        std::string fileN = "TextFiles/DatedReceiptFiles/ReceiptFile:" + std::to_string(date) + "-" + std::to_string(month) + "-" + std::to_string(year) + ".txt";
+        std::string fileN = "TextFiles/DatedReceiptFiles/ReceiptFile:" + date + "-" + month + "-" + year + ".txt";
         std::ifstream file(fileN);
 
         std::string content((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>())); // Read the entire file
@@ -93,12 +93,18 @@ std::string Administrator::getLogbook(int date, int month, int year)
  * 
  * @return int 
  */
-int Administrator::totalRevenue()
+int Administrator::totalRevenue(std::string month, std::string year)
 {
     try
     {
-
-        std::ifstream inputFile("TextFiles/RevenueReceipt.txt");
+        std::ifstream inputFile;
+        
+        if(month==""){
+            inputFile.open("TextFiles/RevenueFiles/RevenueOf:"+year+".txt", std::ios::in);
+        }else{
+            inputFile.open("TextFiles/RevenueFiles/RevenueOf:"+month+"-"+year+".txt", std::ios::in);
+        }
+        
 
         if (!inputFile.is_open())
         {

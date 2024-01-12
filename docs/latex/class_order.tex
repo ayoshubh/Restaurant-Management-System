@@ -1,0 +1,190 @@
+\doxysection{Order Class Reference}
+\hypertarget{class_order}{}\label{class_order}\index{Order@{Order}}
+Inheritance diagram for Order\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_order}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_order_a8710b9b1cb5b620854a7b1adb943000a}{get\+Dessert\+Order\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em This member function calculates the cost of dessert ordered by the user. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_order_a9e09c65401533511bf7bdb4fccc7a48c}{get\+Main\+Course\+Order\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em This member function calculates the cost of main course ordered by the user. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_order_acc5ba0187e8f1dce9a52cb0a6ca6c109}{get\+Order\+List}} ()
+\begin{DoxyCompactList}\small\item\em This method does string interpolation and stores each item\+Id in order\+Input as a vector of string and returns it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_order_a7c862ab362745b402d88d24f10364f0e}{get\+Starter\+Order\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em This member function calculates the cost of starters ordered by the user. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_order_adf40e77424c22e495b8e752e27c28b80}{Order}} (std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ s\+List=\{\}, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ m\+List=\{\}, std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ d\+List=\{\})
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_order}{Order}\+:\+: \doxylink{class_order}{Order} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_order_a6bd9cc1f240d32b390353976031b9184}{set\+Order\+Input}} (std\+::string order\+Inp)
+\begin{DoxyCompactList}\small\item\em A setter method used to initialise the data member order\+Input string with the input given by the user which includes the item\+Id of item(s) they want to order. \end{DoxyCompactList}\item 
+\Hypertarget{class_order_a61ef742577f6687d3c4cd070e3d896d5}\label{class_order_a61ef742577f6687d3c4cd070e3d896d5} 
+void {\bfseries set\+Order\+List} ()
+\begin{DoxyCompactList}\small\item\em setter method to clear order\+List \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_starters}{Starters}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_starters_a8ee39381ab4fbc0c6bd07fe4f1335caf}{display}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the starters\textquotesingle{} menu in a tabular form. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_starters_a114b9aa84d7c9fa8aebfa7c2dc362cac}{get\+Menu\+List}} ()
+\begin{DoxyCompactList}\small\item\em getter method to return the menu of the starters. \end{DoxyCompactList}\item 
+void {\bfseries set\+Menu\+List} ()
+\begin{DoxyCompactList}\small\item\em Setter method to initialise data member menu\+List. \end{DoxyCompactList}\item 
+{\bfseries Starters} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_starters}{Starters}\+:\+: \doxylink{class_starters}{Starters} object data member file\+Name has been initialised in the constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_menu}{Menu}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_menu_aa5bfecbe0fe3fe7c0e173d9edb013b7a}{get\+Menu}} (std\+::string filename)
+\begin{DoxyCompactList}\small\item\em This method fetches data of the menu from an external .txt file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_main_course}{Main\+Course}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_main_course_a7c29bf6c0146fec53f40244481e1ef8e}{display}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the Main course menu in a tabular form. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_main_course_a36967a576f723499696727d72024ff5a}{get\+Menu\+List}} ()
+\begin{DoxyCompactList}\small\item\em getter method to return the menu of the main course. \end{DoxyCompactList}\item 
+{\bfseries Main\+Course} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Main Course\+:\+: Main Course object data member file\+Name has been initialised in the constructor. \end{DoxyCompactList}\item 
+void {\bfseries set\+Menu\+List} ()
+\begin{DoxyCompactList}\small\item\em Setter method to initialise data member menu\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_dessert}{Dessert}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Dessert} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_dessert}{Dessert}\+:\+: \doxylink{class_dessert}{Dessert} object data member file\+Name has been initialised in the constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_dessert_af3881cd3faccf961be0fca89a6fd366c}{display}} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the \doxylink{class_dessert}{Dessert} menu in a tabular form. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_dessert_a738a97074b942c3bc36e692fcca83ad8}{get\+Menu\+List}} ()
+\begin{DoxyCompactList}\small\item\em getter method to return the menu of the dessert. \end{DoxyCompactList}\item 
+void {\bfseries set\+Menu\+List} ()
+\begin{DoxyCompactList}\small\item\em Setter method to initialise data member menu\+List. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_order_a52fca89b0bace9d94741a7e07c111ea2}\label{class_order_a52fca89b0bace9d94741a7e07c111ea2} 
+int {\bfseries dessert\+Price}
+\item 
+\Hypertarget{class_order_a53734dc2f33777477a35a3c740e537f7}\label{class_order_a53734dc2f33777477a35a3c740e537f7} 
+int {\bfseries main\+Course\+Price}
+\item 
+\Hypertarget{class_order_aad930add5247d03db3ceeea109a5b2c8}\label{class_order_aad930add5247d03db3ceeea109a5b2c8} 
+std\+::string {\bfseries order\+Input}
+\item 
+\Hypertarget{class_order_a03b760f128cb85d396cc1485edb49ec0}\label{class_order_a03b760f128cb85d396cc1485edb49ec0} 
+std\+::vector$<$ std\+::string $>$ {\bfseries order\+List}
+\item 
+\Hypertarget{class_order_a435e79459833095f76cc8d7db056eadb}\label{class_order_a435e79459833095f76cc8d7db056eadb} 
+int {\bfseries starter\+Price}
+\item 
+\Hypertarget{class_order_ad0373605e1ed8c73019f424ba3f38c17}\label{class_order_ad0373605e1ed8c73019f424ba3f38c17} 
+int {\bfseries total\+Cost}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_menu}{Menu}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ {\bfseries menu\+List}
+\item 
+std\+::string {\bfseries single\+Item\+Detail}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_order_adf40e77424c22e495b8e752e27c28b80}\label{class_order_adf40e77424c22e495b8e752e27c28b80} 
+\index{Order@{Order}!Order@{Order}}
+\index{Order@{Order}!Order@{Order}}
+\doxysubsubsection{\texorpdfstring{Order()}{Order()}}
+{\footnotesize\ttfamily Order\+::\+Order (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$}]{s\+List = {\ttfamily \{\}},  }\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$}]{m\+List = {\ttfamily \{\}},  }\item[{std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$}]{d\+List = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{class_order}{Order}\+:\+: \doxylink{class_order}{Order} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s\+List} & \\
+\hline
+{\em m\+List} & \\
+\hline
+{\em d\+List} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_order_a8710b9b1cb5b620854a7b1adb943000a}\label{class_order_a8710b9b1cb5b620854a7b1adb943000a} 
+\index{Order@{Order}!getDessertOrderCost@{getDessertOrderCost}}
+\index{getDessertOrderCost@{getDessertOrderCost}!Order@{Order}}
+\doxysubsubsection{\texorpdfstring{getDessertOrderCost()}{getDessertOrderCost()}}
+{\footnotesize\ttfamily int Order\+::get\+Dessert\+Order\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This member function calculates the cost of dessert ordered by the user. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_order_a9e09c65401533511bf7bdb4fccc7a48c}\label{class_order_a9e09c65401533511bf7bdb4fccc7a48c} 
+\index{Order@{Order}!getMainCourseOrderCost@{getMainCourseOrderCost}}
+\index{getMainCourseOrderCost@{getMainCourseOrderCost}!Order@{Order}}
+\doxysubsubsection{\texorpdfstring{getMainCourseOrderCost()}{getMainCourseOrderCost()}}
+{\footnotesize\ttfamily int Order\+::get\+Main\+Course\+Order\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This member function calculates the cost of main course ordered by the user. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_order_acc5ba0187e8f1dce9a52cb0a6ca6c109}\label{class_order_acc5ba0187e8f1dce9a52cb0a6ca6c109} 
+\index{Order@{Order}!getOrderList@{getOrderList}}
+\index{getOrderList@{getOrderList}!Order@{Order}}
+\doxysubsubsection{\texorpdfstring{getOrderList()}{getOrderList()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Order\+::get\+Order\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This method does string interpolation and stores each item\+Id in order\+Input as a vector of string and returns it. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ 
+\end{DoxyReturn}
+\Hypertarget{class_order_a7c862ab362745b402d88d24f10364f0e}\label{class_order_a7c862ab362745b402d88d24f10364f0e} 
+\index{Order@{Order}!getStarterOrderCost@{getStarterOrderCost}}
+\index{getStarterOrderCost@{getStarterOrderCost}!Order@{Order}}
+\doxysubsubsection{\texorpdfstring{getStarterOrderCost()}{getStarterOrderCost()}}
+{\footnotesize\ttfamily int Order\+::get\+Starter\+Order\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This member function calculates the cost of starters ordered by the user. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{class_order_a6bd9cc1f240d32b390353976031b9184}\label{class_order_a6bd9cc1f240d32b390353976031b9184} 
+\index{Order@{Order}!setOrderInput@{setOrderInput}}
+\index{setOrderInput@{setOrderInput}!Order@{Order}}
+\doxysubsubsection{\texorpdfstring{setOrderInput()}{setOrderInput()}}
+{\footnotesize\ttfamily void Order\+::set\+Order\+Input (\begin{DoxyParamCaption}\item[{std\+::string}]{order\+Inp }\end{DoxyParamCaption})}
+
+
+
+A setter method used to initialise the data member order\+Input string with the input given by the user which includes the item\+Id of item(s) they want to order. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em order\+Inp} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/shubham/\+Desktop/dev/\+C++/\+Header/\mbox{\hyperlink{_order_8h}{Order.\+h}}\item 
+/\+Users/shubham/\+Desktop/dev/\+C++/\+Class/\mbox{\hyperlink{_order_8cpp}{Order.\+cpp}}\end{DoxyCompactItemize}

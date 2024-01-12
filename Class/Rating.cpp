@@ -1,6 +1,19 @@
+/**
+ * @file Rating.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains implementation for Rating class
+ * @version 0.1
+ * @date 2024-01-10
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #include "Rating.h"
-using namespace std;
-void Rating::takeRating()
+
+/**
+ * @brief This method displays the type of rating users can give.
+ */
+void Rating::showRatingLevel()
 {
     try
     {
@@ -8,8 +21,7 @@ void Rating::takeRating()
         std::cout << "Enter 2 for Dissatisfied Experience" << std::endl;
         std::cout << "Enter 3 for Somewhat Good Experience" << std::endl;
         std::cout << "Enter 4 for Good Experience" << std::endl;
-        std::cout << "Enter 5 for Excellent Experience\n"
-                  << std::endl;
+        std::cout << "Enter 5 for Excellent Experience\n"<< std::endl;
     }
     catch (const std::exception &e)
     {
@@ -18,20 +30,32 @@ void Rating::takeRating()
     }
 }
 
+/**
+ * @brief Setter method to set the choice data member with the rating input given by the user
+ * @param rate 
+ */
 void Rating::setRating(int rate)
 {
     choice = rate;
 }
 
+/**
+ * @brief Setter method to set the feedback string with the user feedback and to write it to external file. 
+ * @param feedback 
+ */
 void Rating::setFeedback(std::string feedback){
     this->feedback=feedback;
-    std::ofstream file("TextFiles/Feedback.csv", std::ios::app);
+    std::ofstream file("TextFiles/Feedback.txt", std::ios::app);
     file<<this->feedback;
-    file<<endl;
+    file<<"\n";
     file.close();
 }
 
-void Rating::displayRating()
+/**
+ * @brief This method is used to display the response after user gives rating and 
+ * saves the user rating to external file
+ */
+void Rating::displayResponse()
 {
     try
     {

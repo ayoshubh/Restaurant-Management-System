@@ -1,3 +1,13 @@
+/**
+ * @file Receipt.h
+ * @author Shubham Chauhan
+ * @brief This file contains declaration for Receipt file.
+ * @version 0.1
+ * @date 2024-01-12
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
 #ifndef RECEIPT_H
 #define RECEIPT_H
 
@@ -13,9 +23,9 @@
 
 class Receipt : public User, public Order {
 private:
-    std::string itemName, itemName2, customerName, receipt, str;
+    std::string itemName, customerName, receipt;
     std::vector<std::string> starterStr, mainStr, dessertStr;
-    int starterPrice, mainCoursePrice, dessertPrice, totalCost;
+    int totalCost;
     std::mutex mtx;
     std::condition_variable cv;
     bool receiptGenerated;
@@ -26,7 +36,7 @@ public:
     
     std::string getReceipt();
     void addReceiptToFile();
-    void writeToFile(const std::string& name, const std::string& filename);
+    void writeToFile(const std::string& content, const std::string& filename);
     void addReceiptToIndividualFile();
     void notify(const std::string& name);
 };

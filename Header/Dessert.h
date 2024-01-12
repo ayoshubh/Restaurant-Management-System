@@ -1,7 +1,7 @@
 /**
- * @file Administrator.h
+ * @file Dessert.h
  * @author Shubham Chauhan
- * @brief This header file contains declarations for Menu class.
+ * @brief This header file contains declarations for Dessert class.
  * @version 0.1
  * @date 2024-01-08
  * @copyright Copyright (c) 2024

@@ -1,0 +1,41 @@
+\doxysection{Receipt.\+h}
+\hypertarget{_receipt_8h_source}{}\label{_receipt_8h_source}\index{/Users/shubham/Desktop/dev/C++/Header/Receipt.h@{/Users/shubham/Desktop/dev/C++/Header/Receipt.h}}
+\mbox{\hyperlink{_receipt_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ RECEIPT\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ RECEIPT\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_user_8h}{User.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_order_8h}{Order.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <condition\_variable>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_receipt}{Receipt}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_user}{User}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_order}{Order}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ itemName,\ customerName,\ receipt;}
+\DoxyCodeLine{00027\ \ \ \ \ std::vector<std::string>\ starterStr,\ mainStr,\ dessertStr;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ totalCost;}
+\DoxyCodeLine{00029\ \ \ \ \ std::mutex\ mtx;}
+\DoxyCodeLine{00030\ \ \ \ \ std::condition\_variable\ cv;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ receiptGenerated;}
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ getOrderedItems();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_receipt}{Receipt}}(std::string\ cname,\ std::vector<std::string>\ starterStr,\ std::vector<std::string>\ mainStr,\ std::vector<std::string>\ dessertStr,\ \textcolor{keywordtype}{int}\ starterPrice\ =\ 0,\ \textcolor{keywordtype}{int}\ mainCoursePrice\ =\ 0,\ \textcolor{keywordtype}{int}\ dessertPrice\ =\ 0);}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ getReceipt();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ addReceiptToFile();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ writeToFile(\textcolor{keyword}{const}\ std::string\&\ content,\ \textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ addReceiptToIndividualFile();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ notify(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RECEIPT\_H}}
+
+\end{DoxyCode}

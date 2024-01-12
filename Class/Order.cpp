@@ -1,22 +1,49 @@
+/**
+ * @file Order.cpp
+ * @author Shubham Chauhan
+ * @brief This file contains implementation for Order class
+ * @version 0.1
+ * @date 2024-01-10
+ * @copyright Copyright (c) 2024
+ */
 #include "Order.h"
-using namespace std;
 
-Order::Order(vector<vector<string>> sList, vector<vector<string>> mList, vector<vector<string>> dList)
-    {
-        Starters::menuList = sList;
-        MainCourse::menuList = mList;
-        Dessert::menuList = dList;
-    }
+/**
+ * @brief Construct a new Order:: Order object
+ * @param sList
+ * @param mList
+ * @param dList
+ */
+Order::Order(std::vector<std::vector<std::string>> sList, std::vector<std::vector<std::string>> mList, std::vector<std::vector<std::string>> dList)
+{
+    Starters::menuList = sList;
+    MainCourse::menuList = mList;
+    Dessert::menuList = dList;
+}
+
+/**
+ * @brief A setter method used to initialise the data member orderInput string with the input given by the user
+ * which includes the itemId of item(s) they want to order.
+ * @param orderInp 
+ */
 void Order::setOrderInput(std::string orderInp)
 {
     orderInput = orderInp;
 }
 
+/**
+ * @brief setter method to clear orderList
+ */
 void Order::setOrderList()
 {
     this->orderList.clear();
 }
 
+/**
+ * @brief This method does string interpolation and stores each itemId in orderInput as a vector
+ * of string and returns it.
+ * @return std::vector<std::string> 
+ */
 std::vector<std::string> Order::getOrderList()
 {
     try
@@ -49,6 +76,10 @@ std::vector<std::string> Order::getOrderList()
     }
 }
 
+/**
+ * @brief This member function calculates the cost of starters ordered by the user.
+ * @return int 
+ */
 int Order::getStarterOrderCost()
 {
     try
@@ -78,7 +109,7 @@ int Order::getStarterOrderCost()
         }
         if (orderList.size() != errCount)
         {
-            cout << "Your order has been successfully placed \n";
+            std::cout << "Your order has been successfully placed \n";
         }
         return starterPrice;
     }
@@ -89,6 +120,10 @@ int Order::getStarterOrderCost()
     }
 }
 
+/**
+ * @brief This member function calculates the cost of main course ordered by the user.
+ * @return int 
+ */
 int Order::getMainCourseOrderCost()
 {
     try
@@ -130,6 +165,10 @@ int Order::getMainCourseOrderCost()
     }
 }
 
+/**
+ * @brief This member function calculates the cost of dessert ordered by the user.
+ * @return int 
+ */
 int Order::getDessertOrderCost()
 {
     try
@@ -158,7 +197,7 @@ int Order::getDessertOrderCost()
             }
             if (orderList.size() != errCount)
             {
-                cout << "Your order has been successfully placed \n";
+                std::cout << "Your order has been successfully placed \n";
             }
         }
         return dessertPrice;

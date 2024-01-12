@@ -1,0 +1,76 @@
+\doxysection{Rating Class Reference}
+\hypertarget{class_rating}{}\label{class_rating}\index{Rating@{Rating}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rating_ae160f5c9caf1f02c2f380cf6e152c18a}\label{class_rating_ae160f5c9caf1f02c2f380cf6e152c18a} 
+enum {\bfseries rate} \{ \newline
+{\bfseries one\+Star} = 1
+, {\bfseries two\+Star}
+, {\bfseries three\+Star}
+, {\bfseries four\+Star}
+, \newline
+{\bfseries five\+Star}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rating_ab834c5fe875164d7008954e8c359dd03}\label{class_rating_ab834c5fe875164d7008954e8c359dd03} 
+void {\bfseries display\+Response} ()
+\begin{DoxyCompactList}\small\item\em This method is used to display the response after user gives rating and saves the user rating to external file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rating_a6ef043bf803eda881aca4addcdf2efc4}{set\+Feedback}} (std\+::string feedback)
+\begin{DoxyCompactList}\small\item\em Setter method to set the feedback string with the user feedback and to write it to external file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_rating_ace2d1f2fea11aebfdabe49f333970904}{set\+Rating}} (int rate)
+\begin{DoxyCompactList}\small\item\em Setter method to set the choice data member with the rating input given by the user. \end{DoxyCompactList}\item 
+\Hypertarget{class_rating_a7c665403e214fb6b9a05777dddcf3be7}\label{class_rating_a7c665403e214fb6b9a05777dddcf3be7} 
+void {\bfseries show\+Rating\+Level} ()
+\begin{DoxyCompactList}\small\item\em This method displays the type of rating users can give. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rating_ae995277a0ae4d8d3da0c2a13c05c4bba}\label{class_rating_ae995277a0ae4d8d3da0c2a13c05c4bba} 
+int {\bfseries choice}
+\item 
+\Hypertarget{class_rating_ae5219bf183e55c9bf0c7bbe2aa7069fd}\label{class_rating_ae5219bf183e55c9bf0c7bbe2aa7069fd} 
+std\+::string {\bfseries feedback}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rating_a6ef043bf803eda881aca4addcdf2efc4}\label{class_rating_a6ef043bf803eda881aca4addcdf2efc4} 
+\index{Rating@{Rating}!setFeedback@{setFeedback}}
+\index{setFeedback@{setFeedback}!Rating@{Rating}}
+\doxysubsubsection{\texorpdfstring{setFeedback()}{setFeedback()}}
+{\footnotesize\ttfamily void Rating\+::set\+Feedback (\begin{DoxyParamCaption}\item[{std\+::string}]{feedback }\end{DoxyParamCaption})}
+
+
+
+Setter method to set the feedback string with the user feedback and to write it to external file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em feedback} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_rating_ace2d1f2fea11aebfdabe49f333970904}\label{class_rating_ace2d1f2fea11aebfdabe49f333970904} 
+\index{Rating@{Rating}!setRating@{setRating}}
+\index{setRating@{setRating}!Rating@{Rating}}
+\doxysubsubsection{\texorpdfstring{setRating()}{setRating()}}
+{\footnotesize\ttfamily void Rating\+::set\+Rating (\begin{DoxyParamCaption}\item[{int}]{rate }\end{DoxyParamCaption})}
+
+
+
+Setter method to set the choice data member with the rating input given by the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rate} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/shubham/\+Desktop/dev/\+C++/\+Header/\mbox{\hyperlink{_rating_8h}{Rating.\+h}}\item 
+/\+Users/shubham/\+Desktop/dev/\+C++/\+Class/\mbox{\hyperlink{_rating_8cpp}{Rating.\+cpp}}\end{DoxyCompactItemize}
