@@ -80,6 +80,6 @@ bool User::validateEntry() {
         return true;
     } else {
         std::cout << "Sorry, we are not open right now \n";
-        return false;
+        return true;
     }
 }

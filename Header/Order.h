@@ -26,7 +26,7 @@ protected:
 public:
     Order(std::vector<std::vector<std::string>> sList = {}, std::vector<std::vector<std::string>> mList = {}, std::vector<std::vector<std::string>> dList = {});
     void setOrderInput(std::string orderInp);
-    void setOrderList();
+    void clearOrderList();
     std::vector<std::string> getOrderList();
     int getStarterOrderCost();
     int getMainCourseOrderCost();

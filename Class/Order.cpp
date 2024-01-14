@@ -34,7 +34,7 @@ void Order::setOrderInput(std::string orderInp)
 /**
  * @brief setter method to clear orderList
  */
-void Order::setOrderList()
+void Order::clearOrderList()
 {
     this->orderList.clear();
 }

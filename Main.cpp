@@ -20,30 +20,30 @@
 #include "Receipt.h"
 #include "Rating.h"
 #include "Administrator.h"
-using namespace std;
+
 int main()
 {
     try
     {
-        string reply;
+        std::string reply;
         while (true)
         {
             system("clear");
             Restaurant r;
             r.showDetails();
-            cout << "\nPress A if you are a customer" << endl;
-            cout << "Press B if you are an administrator" << endl;
-            cout << "Press X to exit\n";
-            cout << "Enter your response here : ";
-            cin >> reply;
+            std::cout << "\nPress A if you are a customer" << std::endl;
+            std::cout << "Press B if you are an administrator" << std::endl;
+            std::cout << "Press X to exit\n";
+            std::cout << "Enter your response here : ";
+            std::cin >> reply;
             if (reply == "A" || reply == "a" || reply == "B" || reply == "b")
             {
                 break;
             }
             else if (reply == "X" || reply == "x")
             {
-                cout << "Are you sure you want to exit?(Y/N)" << endl;
-                cin >> reply;
+                std::cout << "Are you sure you want to exit?(Y/N)" << std::endl;
+                std::cin >> reply;
                 if (reply == "y" || reply == "Y")
                 {
                     break;
@@ -54,13 +54,13 @@ int main()
                 }
                 else
                 {
-                    cout << "Invalid response. Please enter Y for yes and N for no." << endl;
+                    std::cout << "Invalid response. Please enter Y for yes and N for no." << std::endl;
                     usleep(2500000);
                 }
             }
             else
             {
-                cout << "Invalid response. Try again";
+                std::cout << "Invalid response. Try again";
             }
         }
         if (reply == "A" || reply == "a")
@@ -69,15 +69,15 @@ int main()
             if (User::validateEntry())
             {
                 User u;
-                string customerFirstName, customerLastName;
+                std::string customerFirstName, customerLastName;
                 bool flag = true;
                 while (flag)
                 {
-                    cout << "Enter your First Name : ";
-                    cin >> customerFirstName;
+                    std::cout << "Enter your First Name : ";
+                    std::cin >> customerFirstName;
                     u.setFirstName(customerFirstName);
-                    cout << "Enter your Last Name : ";
-                    cin >> customerLastName;
+                    std::cout << "Enter your Last Name : ";
+                    std::cin >> customerLastName;
                     u.setLastName(customerLastName);
                     if (u.validateName())
                     {
@@ -85,37 +85,37 @@ int main()
                     }
                     else
                     {
-                        cout << "\n(Your fullname should atleast contain 6 letters without any special characters or numbers)\n";
+                        std::cout << "\n(Your fullname should atleast contain 6 letters without any special characters or numbers)\n";
                     }
                 }
                 Starters st;
                 MainCourse main;
                 Dessert sweet;
-                vector<thread> threads;
-                threads.push_back(thread(&Starters::setMenuList, &st));
-                threads.push_back(thread(&MainCourse::setMenuList, &main));
-                threads.push_back(thread(&Dessert::setMenuList, &sweet));
+                std::vector<std::thread> threads;
+                threads.push_back(std::thread(&Starters::setMenuList, &st));
+                threads.push_back(std::thread(&MainCourse::setMenuList, &main));
+                threads.push_back(std::thread(&Dessert::setMenuList, &sweet));
                 for (int i = 0; i < 3; i++)
                 {
                     threads[i].join();
                 }
-                vector<vector<string>> sList = st.getMenuList();
-                vector<vector<string>> mList = main.getMenuList();
-                vector<vector<string>> dList = sweet.getMenuList();
+                std::vector<std::vector<std::string>> sList = st.getMenuList();
+                std::vector<std::vector<std::string>> mList = main.getMenuList();
+                std::vector<std::vector<std::string>> dList = sweet.getMenuList();
                 bool ratingFlag = false;
                 int starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
-                vector<string> starterOrderList, mainOrderList, dessertOrderList;
+                std::vector<std::string> starterOrderList, mainOrderList, dessertOrderList;
                 Order mainCourseOrderObj({}, mList, {}), starterOrderObj(sList, {}, {}), dessertOrderObj({}, {}, dList);
                 while (true)
                 {
                     // cout << "\nPress A to see Restaurant Details" << endl;
-                    cout << "\nPress A to see Menu" << endl;
-                    cout << "Press B to get food receipt" << endl;
-                    cout << "Press C to rate your experience" << endl;
-                    cout << "Press X to exit\n\n";
-                    string choice;
-                    cout << "Enter your choice here : ";
-                    cin >> choice;
+                    std::cout << "\nPress A to see Menu" << std::endl;
+                    std::cout << "Press B to get food receipt" << std::endl;
+                    std::cout << "Press C to rate your experience" << std::endl;
+                    std::cout << "Press X to exit\n\n";
+                    std::string choice;
+                    std::cout << "Enter your choice here : ";
+                    std::cin >> choice;
 
                     if (choice == "A" || choice == "a")
                     {
@@ -123,32 +123,32 @@ int main()
                         while (true)
                         {
                             // system("clear");
-                            cout << "\nPress S to see Starters Menu." << endl;
-                            cout << "Press M to see Main Course Menu." << endl;
-                            cout << "Press D to see Dessert Menu." << endl;
-                            cout << "Press X to return to previous Menu." << endl;
-                            cout << "\nEnter your choice here : ";
-                            string menuChoice;
-                            cin >> menuChoice;
+                            std::cout << "\nPress S to see Starters Menu." << std::endl;
+                            std::cout << "Press M to see Main Course Menu." << std::endl;
+                            std::cout << "Press D to see Dessert Menu." << std::endl;
+                            std::cout << "Press X to return to previous Menu." << std::endl;
+                            std::cout << "\nEnter your choice here : ";
+                            std::string menuChoice;
+                            std::cin >> menuChoice;
                             if (menuChoice == "S" || menuChoice == "s")
                             {
                                 system("clear");
                                 // Starters st;
                                 st.display();
-                                string ch;
+                                std::string ch;
                                 while (true)
                                 {
-                                    cout << "\nDo you wish to order something from Starters? \n(press Y for Yes or N for No) : ";
-                                    cin >> ch;
+                                    std::cout << "\nDo you wish to order something from Starters? \n(press Y for Yes or N for No) : ";
+                                    std::cin >> ch;
                                     if (ch == "y" || ch == "Y")
                                     {
-                                        cin.ignore();
-                                        string orderInput;
-                                        cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
-                                        getline(cin, orderInput);
+                                        std::cin.ignore(); //to clear the input buffer
+                                        std::string orderInput;
+                                        std::cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+                                        std::getline(std::cin, orderInput);
                                         starterOrderObj.setOrderInput(orderInput);
-                                        vector<string> orderList = starterOrderObj.getOrderList();
-                                        for (string i : orderList)
+                                        std::vector<std::string> orderList = starterOrderObj.getOrderList();
+                                        for (std::string i : orderList)
                                         {
                                             starterOrderList.push_back(i);
                                         }
@@ -164,7 +164,7 @@ int main()
                                     }
                                     else
                                     {
-                                        cout << "Please select Y for Yes and N for No only \n";
+                                        std::cout << "Please select Y for Yes and N for No only \n";
                                     }
                                 }
                             }
@@ -173,21 +173,21 @@ int main()
                                 system("clear");
                                 // MainCourse main;
                                 main.display();
-                                cout << endl;
-                                string ch;
+                                std::cout << std::endl;
+                                std::string ch;
                                 while (true)
                                 {
-                                    cout << "\nDo you wish to order something from Main course? \n(press Y for Yes or N for No) : ";
-                                    cin >> ch;
+                                    std::cout << "\nDo you wish to order something from Main course? \n(press Y for Yes or N for No) : ";
+                                    std::cin >> ch;
                                     if (ch == "y" || ch == "Y")
                                     {
-                                        cin.ignore();
-                                        string orderInput;
-                                        cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
-                                        getline(cin, orderInput);
+                                        std::cin.ignore();
+                                        std::string orderInput;
+                                        std::cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+                                        std::getline(std::cin, orderInput);
                                         mainCourseOrderObj.setOrderInput(orderInput);
-                                        vector<string> orderList = mainCourseOrderObj.getOrderList();
-                                        for (string i : orderList)
+                                        std::vector<std::string> orderList = mainCourseOrderObj.getOrderList();
+                                        for (std::string i : orderList)
                                         {
                                             mainOrderList.push_back(i);
                                         }
@@ -200,7 +200,7 @@ int main()
                                     }
                                     else
                                     {
-                                        cout << "Please select Y for Yes and N for No only \n";
+                                        std::cout << "Please select Y for Yes and N for No only \n";
                                     }
                                 }
                             }
@@ -209,21 +209,21 @@ int main()
                                 system("clear");
                                 // Dessert sweet;
                                 sweet.display();
-                                cout << endl;
-                                string ch;
+                                std::cout << std::endl;
+                                std::string ch;
                                 while (true)
                                 {
-                                    cout << "\nDo you wish to order something from Dessert? \n(press Y for Yes or N for No) : ";
-                                    cin >> ch;
+                                    std::cout << "\nDo you wish to order something from Dessert? \n(press Y for Yes or N for No) : ";
+                                    std::cin >> ch;
                                     if (ch == "y" || ch == "Y")
                                     {
-                                        cin.ignore();
-                                        string orderInput;
-                                        cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
-                                        getline(cin, orderInput);
+                                        std::cin.ignore();
+                                        std::string orderInput;
+                                        std::cout << "Enter the item Id of items you wish to order(use comma if you want multiple items): ";
+                                        getline(std::cin, orderInput);
                                         dessertOrderObj.setOrderInput(orderInput);
-                                        vector<string> orderList = dessertOrderObj.getOrderList();
-                                        for (string i : orderList)
+                                        std::vector<std::string> orderList = dessertOrderObj.getOrderList();
+                                        for (std::string i : orderList)
                                         {
                                             dessertOrderList.push_back(i);
                                         }
@@ -236,7 +236,7 @@ int main()
                                     }
                                     else
                                     {
-                                        cout << "Please select Y for Yes and N for No only \n";
+                                        std::cout << "Please select Y for Yes and N for No only \n";
                                     }
                                 }
                             }
@@ -248,7 +248,7 @@ int main()
                             else
                             {
                                 system("clear");
-                                cout << "Invalid Response" << endl;
+                                std::cout << "Invalid Response" << std::endl;
                             }
                         }
                     }
@@ -257,25 +257,25 @@ int main()
                         if (!starterPrice && !mainCoursePrice && !dessertPrice)
                         {
                             system("clear");
-                            cout << "\nYou have to order atleast one food item to generate a receipt.\n";
+                            std::cout << "\nYou have to order atleast one food item to generate a receipt.\n";
                         }
                         else
                         {
                             system("clear");
                             std::string singleReceipt;
-                            string customerName = u.getFullName();
+                            std::string customerName = u.getFullName();
                             Receipt bill(customerName, starterOrderList, mainOrderList, dessertOrderList, starterPrice, mainCoursePrice, dessertPrice);
                             std::thread thread1(&Receipt::addReceiptToFile, &bill);
                             std::thread thread2(&Receipt::addReceiptToIndividualFile, &bill);
                             singleReceipt = bill.getReceipt();
-                            cout << singleReceipt << endl;
+                            std::cout << singleReceipt << std::endl;
                             bill.notify(singleReceipt);
                             thread1.join();
                             thread2.join();
                             // bill.addReceiptToFile();
                             starterPrice = 0, mainCoursePrice = 0, dessertPrice = 0;
                             starterOrderList.clear(), mainOrderList.clear(), dessertOrderList.clear();
-                            starterOrderObj.setOrderList(), mainCourseOrderObj.setOrderList(), dessertOrderObj.setOrderList();
+                            starterOrderObj.clearOrderList(), mainCourseOrderObj.clearOrderList(), dessertOrderObj.clearOrderList();
                             ratingFlag = true;
                         }
                     }
@@ -291,8 +291,8 @@ int main()
                             {
                                 r.showRatingLevel();
 
-                                cout << "Enter your response here: ";
-                                if (cin >> choice)
+                                std::cout << "Enter your response here: ";
+                                if (std::cin >> choice)
                                 {
                                     if (choice > 0 && choice < 6)
                                     {
@@ -301,7 +301,7 @@ int main()
                                     }
                                     else
                                     {
-                                        cout << "Please rate from 1-5. \n";
+                                        std::cout << "Please rate from 1-5. \n";
                                     }
                                 }
                                 else
@@ -321,9 +321,9 @@ int main()
                             std::cin >> feedbackChoice;
                             if (feedbackChoice == 'y' || feedbackChoice == 'Y')
                             {
-                                cout << "Please input how you feel about our service below:\n";
-                                cin.ignore();
-                                getline(cin, feedbackString);
+                                std::cout << "Please input how you feel about our service below:\n";
+                                std::cin.ignore();
+                                std::getline(std::cin, feedbackString);
                                 r.setFeedback(feedbackString);
                             }
                             return 0;
@@ -332,15 +332,15 @@ int main()
                         else
                         {
                             system("clear");
-                            cout << "\nPlease order food and generate food receipt before rating your experience. \n";
+                            std::cout << "\nPlease order food and generate food receipt before rating your experience. \n";
                         }
                     }
                     else if (choice == "X" || choice == "x")
                     {
                         if (!starterPrice && !mainCoursePrice && !dessertPrice)
                         {
-                            cout << "Are you sure you want to exit?(Y/N)" << endl;
-                            cin >> reply;
+                            std::cout << "Are you sure you want to exit?(Y/N)" << std::endl;
+                            std::cin >> reply;
                             if (reply == "y" || reply == "Y")
                             {
                                 system("clear");
@@ -353,19 +353,19 @@ int main()
                             }
                             else
                             {
-                                cout << "Invalid response. Please enter Y for yes and N for no." << endl;
+                                std::cout << "Invalid response. Please enter Y for yes and N for no." << std::endl;
                                 continue;
                             }
                         }
                         else
                         {
-                            cout << "\nYou cannot exit without generating the food receipt.\n";
+                            std::cout << "\nYou cannot exit without generating the food receipt.\n";
                         }
                     }
                     else
                     {
                         system("clear");
-                        cout << " Invalid Response" << endl;
+                        std::cout << " Invalid Response" << std::endl;
                     }
                 }
             }
@@ -373,9 +373,9 @@ int main()
         else if (reply == "B" || reply == "b")
         {
             system("clear");
-            string uname, pwd;
-            string sysUname, sysPwd;
-            cout << "Welcome to Administrator Login portal" << endl;
+            std::string uname, pwd;
+            std::string sysUname, sysPwd;
+            std::cout << "Welcome to Administrator Login portal" << std::endl;
             Administrator admin;
             int tries = 3;
             while (tries)
@@ -423,8 +423,8 @@ int main()
                 if (sysUname != username || sysPwd != password)
                 {
                     tries--;
-                    cout << "You have entered the wrong credentials" << endl;
-                    cout << "You have " << tries << " more tries left\n";
+                    std::cout << "You have entered the wrong credentials" << std::endl;
+                    std::cout << "You have " << tries << " more tries left\n";
                     usleep(2000000);
                 }
                 else
@@ -438,32 +438,32 @@ int main()
                 return 0;
             }
 
-            cout << "\nYou are inside the Administrator portal\n\n";
+            std::cout << "\nYou are inside the Administrator portal\n\n";
             system("clear");
 
             while (true)
             {
-                cout << "Press A to access Transaction logbook." << endl;
-                cout << "Press B to see average rating of the restaurant" << endl;
-                cout << "Press C to access Total revenue of the restaurant" << endl;
-                cout << "Press X to Exit" << endl;
-                string choice;
-                cin >> choice;
+                std::cout << "Press A to access Transaction logbook." << std::endl;
+                std::cout << "Press B to see average rating of the restaurant" << std::endl;
+                std::cout << "Press C to access Total revenue of the restaurant" << std::endl;
+                std::cout << "Press X to Exit" << std::endl;
+                std::string choice;
+                std::cin >> choice;
                 if (choice == "A" || choice == "a")
                 {
                     system("clear");
                     std::string date, month, year;
                     std::cout << "Input the date, month number and year: ";
                     std::cin >> date >> month >> year;
-                    string log = admin.getLogbook(date, month, year);
-                    cout << log << endl;
+                    std::string log = admin.getLogbook(date, month, year);
+                    std::cout << log << std::endl;
                 }
                 else if (choice == "B" || choice == "b")
                 {
                     system("clear");
 
                     float average = admin.avgRating();
-                    cout << "\nThe average rating of the restaurant is : " << average << "\n\n";
+                    std::cout << "\nThe average rating of the restaurant is : " << average << "\n\n";
                 }
                 else if (choice == "C" || choice == "c")
                 {
@@ -471,29 +471,29 @@ int main()
                     char ch;
                     std::cout << "Press A if you want to see yearly revenue of the restaurant. \n";
                     std::cout << "Press B if you want to see monthly revenue of the restaurant. \n";
-                    cin >> ch;
+                    std::cin >> ch;
                     std::string month, year;
                     int totalRev;
                     switch (ch)
                     {
                     case 'B':
-                        cout << "Enter the month(1-12) and the year(yyyy): ";
-                        cin >> month >> year;
+                        std::cout << "Enter the month(1-12) and the year(yyyy): ";
+                        std::cin >> month >> year;
                         totalRev = admin.totalRevenue(month, year);
                         break;
                     case 'A':
-                        cout << "Enter the year(yyyy): ";
-                        cin >> year;
+                        std::cout << "Enter the year(yyyy): ";
+                        std::cin >> year;
                         totalRev = admin.totalRevenue("",year);
                         break;
                     }
-                    cout << "\nThe total revenue collection of the restaurant is Rs." << totalRev << "\n\n";
+                    std::cout << "\nThe total revenue collection of the restaurant is Rs." << totalRev << "\n\n";
 
                 }
                 else if (choice == "X" || choice == "x")
                 {
-                    cout << "Are you sure you want to exit?(Y/N)" << endl;
-                    cin >> reply;
+                    std::cout << "Are you sure you want to exit?(Y/N)" << std::endl;
+                    std::cin >> reply;
                     if (reply == "y" || reply == "Y")
                     {
                         system("clear");
@@ -506,13 +506,13 @@ int main()
                     }
                     else
                     {
-                        cout << "Invalid response. Please enter Y for yes and N for no." << endl;
+                        std::cout << "Invalid response. Please enter Y for yes and N for no." << std::endl;
                         continue;
                     }
                 }
                 else
                 {
-                    cout << "Invalid response" << endl;
+                    std::cout << "Invalid response" << std::endl;
                 }
             }
             // }
