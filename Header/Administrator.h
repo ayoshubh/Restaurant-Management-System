@@ -27,6 +27,7 @@ public:
     std::string getLogbook(std::string date, std::string month, std::string year);
     int totalRevenue(std::string month="", std::string year="");
     float avgRating();
+    std::string getFeedback();
 };
 
 #endif // ADMINISTRATOR_H

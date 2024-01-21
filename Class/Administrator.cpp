@@ -175,4 +175,15 @@ float Administrator::avgRating()
         // Handle other exceptions
         std::cerr << "Exception: " << e.what() << std::endl;
     }
+
 }
+
+std::string Administrator::getFeedback(){
+        std::ifstream file("TextFiles/Feedback.txt");
+
+        std::string content((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>())); // Read the entire file
+
+        file.close(); // Close the file
+
+        return content;
+    }

@@ -47,7 +47,7 @@ void Rating::setFeedback(std::string feedback){
     this->feedback=feedback;
     std::ofstream file("TextFiles/Feedback.txt", std::ios::app);
     file<<this->feedback;
-    file<<"\n";
+    file<<"\n\n";
     file.close();
 }
 

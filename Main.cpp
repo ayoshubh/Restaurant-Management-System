@@ -464,6 +464,13 @@ int main()
 
                     float average = admin.avgRating();
                     std::cout << "\nThe average rating of the restaurant is : " << average << "\n\n";
+                    std::cout<<"Do you want to see the feedbacks too?(y/n)\n";
+                    char ch;
+                    std::cin>>ch;
+                    if(ch=='Y'||ch=='y'){
+                        std::string feedback= admin.getFeedback();
+                        std::cout<<feedback;
+                    }
                 }
                 else if (choice == "C" || choice == "c")
                 {
